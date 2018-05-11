@@ -12,7 +12,7 @@ The pop-ups is supposed to to inform the user of any potential problems that sho
 
 Modules are freely placed items in the menu with predefined features / functions. More information about modules can be found in the full documentation.
 
-### Documentation
+## Documentation
 
 The entire documentation can be read from the file 'University Menu (for Windows).pdf'. Unfortunately, at this point the documentation is only in Finnish (sorry). The entire xml syntax can be found from the file 'University Menu (for Windows).xlsx'.
 
@@ -26,5 +26,5 @@ The complete Visual Studio project folder can be found in the code section but y
  
  ## Note
  
-  - Sorry about the messy code that is a result of several different learning phases.
+  - Sorry about the messy code that is a result of several different learning phases
   - Modern UI icons in the project (except the logo of University of Helsinki) are taken from http://modernuiicons.com/
