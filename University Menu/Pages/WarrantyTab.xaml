@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="University_Menu.Pages.WarrantyTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Style="{StaticResource ContentRoot}">
+        <mui:ModernTab SelectedSource="/Pages/WarrantyExpired/WarrantyEN.xaml" Layout="Tab" Name="startPage">
+            <mui:ModernTab.Links>
+                <mui:Link DisplayName="In English" Source="/Pages/WarrantyExpired/WarrantyEN.xaml" />
+                <mui:Link DisplayName="Suomeksi" Source="/Pages/WarrantyExpired/WarrantyFI.xaml" />
+                <mui:Link DisplayName="På svenska" Source="/Pages/WarrantyExpired/WarrantySV.xaml" />
+            </mui:ModernTab.Links>
+        </mui:ModernTab>
+    </Grid>
+</UserControl>

@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="University_Menu.Pages.NetworkSpace.NetworkEN"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel>
+                <RichTextBox Name="rtbName" Background="Transparent" BorderThickness="0" IsReadOnly="True" Foreground="Black" Margin="-8">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0" />
+                        </Style>
+                    </RichTextBox.Resources>
+                    <FlowDocument>
+                        <Paragraph FontSize="30" FontWeight="DemiBold">
+                            NOTE
+                        </Paragraph>
+                        <Paragraph Name="rtbSubTitle" FontSize="16" FontWeight="Bold" Margin="0,2,0,0">
+                            The network disk space of your home directory is running low
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph>
+                            <StackPanel Name="diskSpace"/>
+                            <TextBlock/>
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph>
+                            Keeping a small part of the network disk space of your home directory free is recommended so that applications using disk space continue to work without problems and the synchronization provider can keep your files updated when it is used. You can move additional files to the local HY-Data folder of this computer or to external mass memory devices, for example.
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph>
+                            <Grid>
+                                <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="appbar_alert" Height="21" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Margin="0,0,462,0">
+                                    <Path Width="17.5" Height="20.4" Stretch="Uniform" Fill="#FF6A00" Data="F1 M 38,22.1667C 41.1666,22.1667 57,52.25 55.4166,53.8333C 53.8333,55.4167 22.1667,55.4167 20.5833,53.8333C 19,52.25 34.8333,22.1667 38,22.1667 Z M 38,45.9167C 36.6883,45.9167 35.625,46.98 35.625,48.2917C 35.625,49.6034 36.6883,50.6667 38,50.6667C 39.3116,50.6667 40.375,49.6034 40.375,48.2917C 40.375,46.98 39.3116,45.9167 38,45.9167 Z M 35.625,31.6667L 36.4166,44.3333L 39.5833,44.3333L 40.375,31.6667L 35.625,31.6667 Z " Canvas.Top="0.167"/>
+                                </Canvas>
+                                <TextBlock Name="alert" Margin="26,2,0,3" VerticalAlignment="Center" TextWrapping="Wrap">
+                                    Note that automatic backup copies are only made of files on the university network disks!
+                                </TextBlock>
+                            </Grid>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <TextBlock></TextBlock>
+                <TextBlock></TextBlock>
+                <StackPanel Name="notifyWhatToDo"></StackPanel>
+                <TextBlock></TextBlock>
+                <StackPanel Name="notifyContact"></StackPanel>
+                <TextBlock></TextBlock>
+                <Separator/>
+                <TextBlock Text="IT Center, University of Helsinki" FontStyle="Italic" TextWrapping="Wrap"/>
+                <TextBlock></TextBlock>
+                <CheckBox Name="checkExclude" Click="checkExclude_Click">
+                    <AccessText Text="Do not show this message again when the current conditions for showing it are met"
+                                ToolTip="This setting is automatically reset when the conditions required by this messages are no longer met"
+                                TextWrapping="Wrap"/>
+                </CheckBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

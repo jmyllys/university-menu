@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DefaultCheckup" xml:space="preserve">
+    <value>DefaultCheckup</value>
+  </data>
+  <data name="DefaultDemo" xml:space="preserve">
+    <value>DefaultDemo</value>
+  </data>
+  <data name="DefaultHost" xml:space="preserve">
+    <value>DefaultHostName</value>
+  </data>
+  <data name="DefaultLang" xml:space="preserve">
+    <value>DefaultLanguage</value>
+  </data>
+  <data name="DefaultLangEN" xml:space="preserve">
+    <value>DefaulLanguageEN</value>
+  </data>
+  <data name="DefaultLangFI" xml:space="preserve">
+    <value>DefaulLanguageFI</value>
+  </data>
+  <data name="DefaultLangSV" xml:space="preserve">
+    <value>DefaulLanguageSV</value>
+  </data>
+  <data name="DefaultNetwork" xml:space="preserve">
+    <value>DefaultNetwork</value>
+  </data>
+  <data name="HeaderTag" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="ModuleUserAccountExpires" xml:space="preserve">
+    <value>UserInformationAccountExpires</value>
+  </data>
+  <data name="ModuleUserDiskSpace" xml:space="preserve">
+    <value>UserInformationDiskSpace</value>
+  </data>
+  <data name="ModuleUserEmail" xml:space="preserve">
+    <value>UserInformationEmail</value>
+  </data>
+  <data name="ModuleUserFullName" xml:space="preserve">
+    <value>UserInformationFullName</value>
+  </data>
+  <data name="ModuleUserHomeDir" xml:space="preserve">
+    <value>UserInformationHomeDirectory</value>
+  </data>
+  <data name="ModuleUserHomeDrive" xml:space="preserve">
+    <value>UserInformationHomeDrive</value>
+  </data>
+  <data name="ModuleUserInfo" xml:space="preserve">
+    <value>UserInformation</value>
+  </data>
+  <data name="ModuleUserMailbox" xml:space="preserve">
+    <value>UserInformationMailbox</value>
+  </data>
+  <data name="ModuleUserMailboxCloud" xml:space="preserve">
+    <value>UserInformationMailboxCloud</value>
+  </data>
+  <data name="ModuleUserMailboxLocal" xml:space="preserve">
+    <value>UserInformationMailboxLocal</value>
+  </data>
+  <data name="ModuleUserName" xml:space="preserve">
+    <value>UserInformationUsername</value>
+  </data>
+  <data name="ModuleUserPrinter" xml:space="preserve">
+    <value>UserInformationPrinter</value>
+  </data>
+  <data name="ModuleUserPWChanged" xml:space="preserve">
+    <value>UserInformationPWChanged</value>
+  </data>
+  <data name="ModuleUserPWExpires" xml:space="preserve">
+    <value>UserInformationPWExpires</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>n/a</value>
+  </data>
+  <data name="NameErrorText" xml:space="preserve">
+    <value>NameErrorText</value>
+  </data>
+  <data name="NodeLocalMenu" xml:space="preserve">
+    <value>/local/menu</value>
+  </data>
+  <data name="NodeLocalSettings" xml:space="preserve">
+    <value>/local/settings</value>
+  </data>
+  <data name="NodeAddMenu" xml:space="preserve">
+    <value>/menu</value>
+  </data>
+  <data name="NodeUserSettings" xml:space="preserve">
+    <value>/user/settings</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="NotifyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotifyIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotifyIcon_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotifyIcon_Blue.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotifyIcon_Orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotifyIcon_Orange.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotifyIcon_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotifyIcon_Red.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProgramIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProgramIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SeparatorTag" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="TooltipTag" xml:space="preserve">
+    <value>Tooltip</value>
+  </data>
+  <data name="UMIconText" xml:space="preserve">
+    <value>UMIconText</value>
+  </data>
+  <data name="UMIconTextNotify" xml:space="preserve">
+    <value>UMIconTextNotify</value>
+  </data>
+  <data name="UserCheckupBalloon" xml:space="preserve">
+    <value>CheckupBalloon</value>
+  </data>
+  <data name="UserCheckupExclude" xml:space="preserve">
+    <value>CheckupExclude</value>
+  </data>
+  <data name="UserCheckupPopup" xml:space="preserve">
+    <value>LastCheckupPopup</value>
+  </data>
+  <data name="UserLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="UserLastCheckupBalloon" xml:space="preserve">
+    <value>LastCheckupBalloon</value>
+  </data>
+  <data name="UserLastNetworkBalloon" xml:space="preserve">
+    <value>LastNetworkBalloon</value>
+  </data>
+  <data name="UserLastShown" xml:space="preserve">
+    <value>LastShown</value>
+  </data>
+  <data name="UserNetworkBalloon" xml:space="preserve">
+    <value>NetworkBalloon</value>
+  </data>
+  <data name="UserNetworkExclude" xml:space="preserve">
+    <value>NetworkExclude</value>
+  </data>
+  <data name="UserNetworkPopup" xml:space="preserve">
+    <value>LastNetworkPopup</value>
+  </data>
+  <data name="UserWelcome" xml:space="preserve">
+    <value>WelcomeCount</value>
+  </data>
+  <data name="ModuleCompAddress" xml:space="preserve">
+    <value>ComputerInfoAddress</value>
+  </data>
+  <data name="ModuleCompBuilding" xml:space="preserve">
+    <value>ComputerInfoBuilding</value>
+  </data>
+  <data name="ModuleCompCPU" xml:space="preserve">
+    <value>ComputerInfoCPU</value>
+  </data>
+  <data name="ModuleCompHostname" xml:space="preserve">
+    <value>ComputerInfoHostname</value>
+  </data>
+  <data name="ModuleCompInfo" xml:space="preserve">
+    <value>ComputerInfo</value>
+  </data>
+  <data name="ModuleCompMemory" xml:space="preserve">
+    <value>ComputerInfoMemory</value>
+  </data>
+  <data name="ModuleCompModel" xml:space="preserve">
+    <value>ComputerInfoModel</value>
+  </data>
+  <data name="ModuleCompOS" xml:space="preserve">
+    <value>ComputerInfoOS</value>
+  </data>
+  <data name="ModuleCompProfit" xml:space="preserve">
+    <value>ComputerInfoProfit</value>
+  </data>
+  <data name="ModuleCompRoom" xml:space="preserve">
+    <value>ComputerInfoRoom</value>
+  </data>
+  <data name="ModuleCompSN" xml:space="preserve">
+    <value>ComputerInfoSN</value>
+  </data>
+  <data name="ModuleCompWarranty" xml:space="preserve">
+    <value>ComputerInfoWarranty</value>
+  </data>
+  <data name="ModuleCompWinUpd" xml:space="preserve">
+    <value>ComputerInfoWinUpdates</value>
+  </data>
+  <data name="ModuleCopyClipboard" xml:space="preserve">
+    <value>ModuleCopyClipboard</value>
+  </data>
+  <data name="ModuleChat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="ModuleOWA" xml:space="preserve">
+    <value>OWA</value>
+  </data>
+  <data name="ModuleSupportRequest" xml:space="preserve">
+    <value>SupportRequest</value>
+  </data>
+  <data name="VectorCopy" xml:space="preserve">
+    <value>F1 M 27,20L 38.75,20L 37.75,19L 24,19L 24,50L 27,50L 27,20 Z M 46.25,20L 59,32.75L 59,59L 27,59L 27,54L 20,54L 20,15L 39.25,15L 44.25,20L 46.25,20 Z M 31,24L 31,55L 55,55L 55,37L 42,37L 42,24L 31,24 Z M 46,25.25L 46,33L 53.75,33L 46,25.25 Z</value>
+  </data>
+  <data name="VectorHazard" xml:space="preserve">
+    <value>F1 M 12.2495,36.8804L 36.8804,12.2496C 37.4987,11.6312 38.5012,11.6312 39.1196,12.2496L 63.7504,36.8804C 64.3688,37.4988 64.3688,38.5013 63.7504,39.1196L 39.1196,63.7505C 38.5013,64.3688 37.4987,64.3688 36.8804,63.7505L 12.2495,39.1196C 11.6312,38.5013 11.6312,37.4988 12.2495,36.8804 Z M 38,45.125C 36.0325,45.125 34.4375,46.72 34.4375,48.6875C 34.4375,50.655 36.0325,52.25 38,52.25C 39.9675,52.25 41.5625,50.655 41.5625,48.6875C 41.5625,46.72 39.9675,45.125 38,45.125 Z M 34.4375,23.75L 35.625,42.75L 40.375,42.75L 41.5625,23.75L 34.4375,23.75 Z</value>
+  </data>
+  <data name="VectorInfo" xml:space="preserve">
+    <value>F1 M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 33.25,33.25L 33.25,36.4167L 36.4166,36.4167L 36.4166,47.5L 33.25,47.5L 33.25,50.6667L 44.3333,50.6667L 44.3333,47.5L 41.1666,47.5L 41.1666,36.4167L 41.1666,33.25L 33.25,33.25 Z M 38.7917,25.3333C 37.48,25.3333 36.4167,26.3967 36.4167,27.7083C 36.4167,29.02 37.48,30.0833 38.7917,30.0833C 40.1033,30.0833 41.1667,29.02 41.1667,27.7083C 41.1667,26.3967 40.1033,25.3333 38.7917,25.3333 Z</value>
+  </data>
+  <data name="NotifyWelcomeText" xml:space="preserve">
+    <value>WelcomeText</value>
+  </data>
+  <data name="NotifyWelcomeTitle" xml:space="preserve">
+    <value>WelcomeTitle</value>
+  </data>
+  <data name="NotifyBalloonTitle" xml:space="preserve">
+    <value>NotifyBalloonTitle</value>
+  </data>
+  <data name="NotifyCheckupBalloonText" xml:space="preserve">
+    <value>CheckupBalloonText</value>
+  </data>
+  <data name="NotifyNetworkBalloonText" xml:space="preserve">
+    <value>NetworkBalloonText</value>
+  </data>
+  <data name="XMLFileFilter" xml:space="preserve">
+    <value>umadd*.xml</value>
+  </data>
+  <data name="ModuleCompVersion" xml:space="preserve">
+    <value>ComputerInfoVersion</value>
+  </data>
+  <data name="ModuleTooltip" xml:space="preserve">
+    <value>ModuleTooltip</value>
+  </data>
+  <data name="DialogError" xml:space="preserve">
+    <value>DialogError</value>
+  </data>
+  <data name="DialogFileError" xml:space="preserve">
+    <value>DialogFileError</value>
+  </data>
+  <data name="DialogSorry" xml:space="preserve">
+    <value>DialogSorry</value>
+  </data>
+  <data name="ModuleCompAdd" xml:space="preserve">
+    <value>ComputerInfoAdditional</value>
+  </data>
+  <data name="ModuleUserAdd" xml:space="preserve">
+    <value>UserInformationAdditional</value>
+  </data>
+  <data name="ErrorText" xml:space="preserve">
+    <value>ErrorText</value>
+  </data>
+  <data name="ModuleUserAccountUrl" xml:space="preserve">
+    <value>UserInformationPasswordUrl</value>
+  </data>
+  <data name="ModuleUserHomeTooltip" xml:space="preserve">
+    <value>UserInformationHomeTooltip</value>
+  </data>
+  <data name="ModuleUserInstructionsTooltip" xml:space="preserve">
+    <value>UserInformationInstructionsTooltip</value>
+  </data>
+  <data name="ModuleUserPasswordUrl" xml:space="preserve">
+    <value>UserInformationPasswordUrl</value>
+  </data>
+  <data name="UIHelpdeskSupport" xml:space="preserve">
+    <value>UIHelpdeskSupport</value>
+  </data>
+  <data name="UICheckupURL" xml:space="preserve">
+    <value>UICheckupURL</value>
+  </data>
+  <data name="UICheckupWTDConnect" xml:space="preserve">
+    <value>UICheckupWTDConnect</value>
+  </data>
+  <data name="UICheckupWTDVPN" xml:space="preserve">
+    <value>UICheckupWTDVPN</value>
+  </data>
+  <data name="UICheckupWTDWeb" xml:space="preserve">
+    <value>UICheckupWTDWeb</value>
+  </data>
+  <data name="UIHelpdeskTitle" xml:space="preserve">
+    <value>UIHelpdeskTitle</value>
+  </data>
+  <data name="UICheckupWTDTitle" xml:space="preserve">
+    <value>UICheckupWTDTitle</value>
+  </data>
+  <data name="UINetworkWTDHome" xml:space="preserve">
+    <value>UINetworkWTDHome</value>
+  </data>
+  <data name="UINetworkWTDHYData" xml:space="preserve">
+    <value>UINetworkWTDHYData</value>
+  </data>
+  <data name="UINetworkURL" xml:space="preserve">
+    <value>UINetworkURL</value>
+  </data>
+  <data name="UINetworkDiskSpaceInfo" xml:space="preserve">
+    <value>UINetworkDiskSpaceInfo</value>
+  </data>
+  <data name="UINetworkDiskSpaceInfoNA" xml:space="preserve">
+    <value>UINetworkDiskSpaceInfoNA</value>
+  </data>
+  <data name="ChatUrl" xml:space="preserve">
+    <value>ChatUrl</value>
+  </data>
+  <data name="UINetworkDiskSpaceCalc" xml:space="preserve">
+    <value>UINetworkDiskSpaceCalc</value>
+  </data>
+  <data name="UIHelp" xml:space="preserve">
+    <value>UIHelp</value>
+  </data>
+  <data name="UINotifyTitle" xml:space="preserve">
+    <value>UINotifyTitle</value>
+  </data>
+  <data name="UISettings" xml:space="preserve">
+    <value>UISettings</value>
+  </data>
+  <data name="UISupportPreview" xml:space="preserve">
+    <value>UISupportPreview</value>
+  </data>
+  <data name="UISupportForm" xml:space="preserve">
+    <value>UISupportForm</value>
+  </data>
+  <data name="UISupportTitle" xml:space="preserve">
+    <value>UISupportTitle</value>
+  </data>
+  <data name="UIPreviewMessage" xml:space="preserve">
+    <value>UIPreviewMessage</value>
+  </data>
+  <data name="UISupportButtonClear" xml:space="preserve">
+    <value>UISupportButtonClear</value>
+  </data>
+  <data name="UISupportButtonEdit" xml:space="preserve">
+    <value>UISupportButtonEdit</value>
+  </data>
+  <data name="UISupportButtonPreview" xml:space="preserve">
+    <value>UISupportButtonPreview</value>
+  </data>
+  <data name="UISupportButtonSend" xml:space="preserve">
+    <value>UISupportButtonSend</value>
+  </data>
+  <data name="UISupportInfo" xml:space="preserve">
+    <value>UISupportInfo</value>
+  </data>
+  <data name="UISupportMessage" xml:space="preserve">
+    <value>UISupportMessage</value>
+  </data>
+  <data name="UISupportMessageTitle" xml:space="preserve">
+    <value>UISupportMessageTitle</value>
+  </data>
+  <data name="UISupportSubject" xml:space="preserve">
+    <value>UISupportSubject</value>
+  </data>
+  <data name="VectorOWA" xml:space="preserve">
+    <value>F1 M 57, 28.0001L 57.0002, 44.9999L 55.0002, 44.9999L 55.0002, 30L 42.0002, 29.9999L 42.0002, 28L 57, 28.0001 Z M 54, 49.0002L 42.0001, 49L 42, 38.0001L 45.5032, 40.7501L 53.9998, 33.5004L 54, 49.0002 Z M 54, 31.0001L 53.9998, 31.7503L 45.4998, 38.7503L 42.0001, 36L 42.0002, 31L 54, 31.0001 Z M 18.9998, 23.5002L 40.9999, 20.0001L 40.9999, 56.0001L 18.9998, 52.5002L 18.9998, 23.5002 Z M 29.7823, 44.5427C 31.1047, 44.6242 32.6081, 44.0316 33.4484, 43.0072C 35.2038, 40.8676 35.3479, 37.1917 34.085, 34.729C 33.491, 33.5706 32.2772, 32.5478 30.9911, 32.3455C 29.9414, 32.1803 28.7908, 32.3617 27.8419, 32.8397C 25.3245, 34.1079 24.2313, 38.1775 25.1295, 40.8493C 25.7605, 42.7263 27.8059, 44.421 29.7823, 44.5427 Z M 29.87, 34.5962C 32.1888, 34.5309 33.0384, 39.4058 31.7104, 41.3077C 31.5008, 41.6079 31.216, 41.8734 30.8877, 42.0353C 30.5612, 42.1963 30.1792, 42.2576 29.8155, 42.2423C 29.4521, 42.2269 29.0805, 42.1272 28.7653, 41.9457C 28.4352, 41.7557 28.1522, 41.4733 27.9357, 41.16C 26.6387, 39.2837 27.5899, 34.6605 29.87, 34.5962 Z</value>
+  </data>
+  <data name="UIPreviewCanNotSend" xml:space="preserve">
+    <value>UIPreviewCanNotSend</value>
+  </data>
+  <data name="ExecuteTag" xml:space="preserve">
+    <value>ExecuteTag</value>
+  </data>
+  <data name="ParametersTag" xml:space="preserve">
+    <value>ParametersTag</value>
+  </data>
+  <data name="UIAttachmentAdd" xml:space="preserve">
+    <value>UIAttachmentAdd</value>
+  </data>
+  <data name="UIAttachmentClear" xml:space="preserve">
+    <value>UIAttachmentClear</value>
+  </data>
+  <data name="UIAttachmentCount0" xml:space="preserve">
+    <value>UIAttachmentCount0</value>
+  </data>
+  <data name="UIAttachmentCount1" xml:space="preserve">
+    <value>UIAttachmentCount1</value>
+  </data>
+  <data name="UIAttachmentCount2" xml:space="preserve">
+    <value>UIAttachmentCount2</value>
+  </data>
+  <data name="UISupportAttachments" xml:space="preserve">
+    <value>UISupportAttachments</value>
+  </data>
+  <data name="UISupportBasicMessage" xml:space="preserve">
+    <value>UISupportBasicMessage</value>
+  </data>
+  <data name="UISupportBulletin" xml:space="preserve">
+    <value>UISupportBulletin</value>
+  </data>
+  <data name="UISupportOther" xml:space="preserve">
+    <value>UISupportOther</value>
+  </data>
+  <data name="UISupportSIBulletinInfo" xml:space="preserve">
+    <value>UISupportSIBulletinInfo</value>
+  </data>
+  <data name="UISupportSIBulletinSoftwarePortal" xml:space="preserve">
+    <value>UISupportSIBulletinSoftwarePortal</value>
+  </data>
+  <data name="UISupportSIComments" xml:space="preserve">
+    <value>UISupportSIComments</value>
+  </data>
+  <data name="UISupportSIInstallation" xml:space="preserve">
+    <value>UISupportSIInstallation</value>
+  </data>
+  <data name="UISupportSIInstallationInfo" xml:space="preserve">
+    <value>UISupportSIInstallationInfo</value>
+  </data>
+  <data name="UISupportSIInstallationOption" xml:space="preserve">
+    <value>UISupportSIInstallationOption</value>
+  </data>
+  <data name="UISupportSIInstallationPickDate" xml:space="preserve">
+    <value>UISupportSIInstallationPickDate</value>
+  </data>
+  <data name="UISupportSIInstallationTime" xml:space="preserve">
+    <value>UISupportSIInstallationTime</value>
+  </data>
+  <data name="UISupportSIInstructions" xml:space="preserve">
+    <value>UISupportSIInstructions</value>
+  </data>
+  <data name="UISupportSILicense" xml:space="preserve">
+    <value>UISupportSILicense</value>
+  </data>
+  <data name="UISupportSILicense1" xml:space="preserve">
+    <value>UISupportSILicense1</value>
+  </data>
+  <data name="UISupportSILicense2" xml:space="preserve">
+    <value>UISupportSILicense2</value>
+  </data>
+  <data name="UISupportSILicenseInfo" xml:space="preserve">
+    <value>UISupportSILicenseInfo</value>
+  </data>
+  <data name="UISupportSISoftware" xml:space="preserve">
+    <value>UISupportSISoftware</value>
+  </data>
+  <data name="UISupportPuAcceptor" xml:space="preserve">
+    <value>UISupportPuAcceptor</value>
+  </data>
+  <data name="UISupportPuAcceptorStyle" xml:space="preserve">
+    <value>UISupportPuAcceptorStyle</value>
+  </data>
+  <data name="UISupportPuBulletinInfo" xml:space="preserve">
+    <value>UISupportPuBulletinInfo</value>
+  </data>
+  <data name="UISupportPuEndUser" xml:space="preserve">
+    <value>UISupportPuEndUser</value>
+  </data>
+  <data name="UISupportPuEndUserStyle" xml:space="preserve">
+    <value>UISupportPuEndUserStyle</value>
+  </data>
+  <data name="UISupportPuFlammaURL" xml:space="preserve">
+    <value>UISupportPuFlammaURL</value>
+  </data>
+  <data name="UISupportPuMe" xml:space="preserve">
+    <value>UISupportPuMe</value>
+  </data>
+  <data name="UISupportPuOrders" xml:space="preserve">
+    <value>UISupportPuOrders</value>
+  </data>
+  <data name="UISupportPuType" xml:space="preserve">
+    <value>UISupportPuType</value>
+  </data>
+  <data name="UISupportPuTypeNew" xml:space="preserve">
+    <value>UISupportPuTypeNew</value>
+  </data>
+  <data name="UISupportPuTypeReplace" xml:space="preserve">
+    <value>UISupportPuTypeReplace</value>
+  </data>
+  <data name="UISupportPuTypeStyle" xml:space="preserve">
+    <value>UISupportPuTypeStyle</value>
+  </data>
+  <data name="UISupportPuWBS" xml:space="preserve">
+    <value>UISupportPuWBS</value>
+  </data>
+  <data name="UISupportPuWBSStyle" xml:space="preserve">
+    <value>UISupportPuWBSStyle</value>
+  </data>
+  <data name="UISupportSIInstallationAnyTime" xml:space="preserve">
+    <value>UISupportSIInstallationAnyTime</value>
+  </data>
+  <data name="UISupportSIPortalURL" xml:space="preserve">
+    <value>UISupportSIPortalURL</value>
+  </data>
+  <data name="UISupportCategory" xml:space="preserve">
+    <value>UISupportCategory</value>
+  </data>
+  <data name="UISupportAutoEnd" xml:space="preserve">
+    <value>----------------------------&lt;-</value>
+  </data>
+  <data name="UISupportAutoStart" xml:space="preserve">
+    <value>-&gt;----------------------------</value>
+  </data>
+  <data name="UISupportAttachment" xml:space="preserve">
+    <value>UISupportAttachment</value>
+  </data>
+  <data name="UISupportCategoryPurchases" xml:space="preserve">
+    <value>UICategoryPurchases</value>
+  </data>
+  <data name="UISupportCategorySI" xml:space="preserve">
+    <value>UICategorySoftwareInstallation</value>
+  </data>
+  <data name="UISupportAgain" xml:space="preserve">
+    <value>UISupportAgain</value>
+  </data>
+  <data name="UISupportNotIdentified" xml:space="preserve">
+    <value>UISupportNotIdentified</value>
+  </data>
+  <data name="UISupportWait" xml:space="preserve">
+    <value>UISupportWait</value>
+  </data>
+  <data name="UIPreviewAttachmentError" xml:space="preserve">
+    <value>UIPreviewAttachmentError</value>
+  </data>
+  <data name="UIPreviewCancel" xml:space="preserve">
+    <value>UIPreviewCancel</value>
+  </data>
+  <data name="UIPreviewSendError" xml:space="preserve">
+    <value>UIPreviewSendError</value>
+  </data>
+  <data name="UIPreviewSendSuccess" xml:space="preserve">
+    <value>UIPreviewSendSuccess</value>
+  </data>
+  <data name="UISettingsAbout" xml:space="preserve">
+    <value>UISettingsAbout</value>
+  </data>
+  <data name="UISettingsAppearance" xml:space="preserve">
+    <value>UISettingsAppearance</value>
+  </data>
+  <data name="UISettingsDark" xml:space="preserve">
+    <value>UISettingsDark</value>
+  </data>
+  <data name="UISettingsFontSize" xml:space="preserve">
+    <value>UISettingsFontSize</value>
+  </data>
+  <data name="UISettingsLarge" xml:space="preserve">
+    <value>UISettingsLarge</value>
+  </data>
+  <data name="UISettingsLight" xml:space="preserve">
+    <value>UISettingsLight</value>
+  </data>
+  <data name="UISettingsSmall" xml:space="preserve">
+    <value>UISettingsSmall</value>
+  </data>
+  <data name="UISettingsTheme" xml:space="preserve">
+    <value>UISettingsTheme</value>
+  </data>
+  <data name="UINoNotify" xml:space="preserve">
+    <value>UINoNotify</value>
+  </data>
+  <data name="UINoNotifyText" xml:space="preserve">
+    <value>UINoNotifyText</value>
+  </data>
+  <data name="UIHelpUrl" xml:space="preserve">
+    <value>UIHelpUrl</value>
+  </data>
+  <data name="UserAccountExpire" xml:space="preserve">
+    <value>UIAccountExpire</value>
+  </data>
+  <data name="UserColor" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="UserEmail" xml:space="preserve">
+    <value>UIEmail</value>
+  </data>
+  <data name="UserEmailService" xml:space="preserve">
+    <value>UIEmailService</value>
+  </data>
+  <data name="UserFont" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="UserFullName" xml:space="preserve">
+    <value>UIFullName</value>
+  </data>
+  <data name="UserHomeDir" xml:space="preserve">
+    <value>UIHomeDirectory</value>
+  </data>
+  <data name="UserHomeDrive" xml:space="preserve">
+    <value>UIHomeDrive</value>
+  </data>
+  <data name="UserPasswordExpire" xml:space="preserve">
+    <value>UIPasswordExpire</value>
+  </data>
+  <data name="UserPasswordSet" xml:space="preserve">
+    <value>UIPasswordSet</value>
+  </data>
+  <data name="UserTheme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="DefaultLangSeparator" xml:space="preserve">
+    <value>DefaultLangSeparator</value>
+  </data>
+  <data name="MenuEN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuEN.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MenuFI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuFI.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MenuSV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuSV.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UISettingsApply" xml:space="preserve">
+    <value>UISettingsApply</value>
+  </data>
+  <data name="UISettingsLanguage" xml:space="preserve">
+    <value>UISettingsLanguage</value>
+  </data>
+  <data name="DefaultReboot" xml:space="preserve">
+    <value>DefaultReboot</value>
+  </data>
+  <data name="UIRestartButton" xml:space="preserve">
+    <value>UIRestartButton</value>
+  </data>
+  <data name="UIRestartConfirm" xml:space="preserve">
+    <value>UIRestartConfirm</value>
+  </data>
+  <data name="UserRebootExclude" xml:space="preserve">
+    <value>RebootExclude</value>
+  </data>
+  <data name="NotifyRebootBalloonText" xml:space="preserve">
+    <value>NotifyRebootBalloonText</value>
+  </data>
+  <data name="UserLastRebootBalloon" xml:space="preserve">
+    <value>LastRebootBalloon</value>
+  </data>
+  <data name="UserRebootBalloon" xml:space="preserve">
+    <value>RebootBalloon</value>
+  </data>
+  <data name="UserRebootPopup" xml:space="preserve">
+    <value>LastRebootPopup</value>
+  </data>
+  <data name="NotifyIcon_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotifyIcon_Black.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArgumentSettings" xml:space="preserve">
+    <value>/settings</value>
+  </data>
+  <data name="ModuleUserDiskSpaceFree" xml:space="preserve">
+    <value>ModuleUserDiskSpaceFree</value>
+  </data>
+  <data name="ArgumentDebug" xml:space="preserve">
+    <value>/debug</value>
+  </data>
+  <data name="DefaultRoaming" xml:space="preserve">
+    <value>DefaultRoaming</value>
+  </data>
+  <data name="UserRoaming" xml:space="preserve">
+    <value>RoamingCount</value>
+  </data>
+  <data name="UserRoamingExclude" xml:space="preserve">
+    <value>RoamingExclude</value>
+  </data>
+  <data name="UIMessageInfo" xml:space="preserve">
+    <value>UIMessageInfo</value>
+  </data>
+  <data name="UISupportPuDevice" xml:space="preserve">
+    <value>UISupportPuDevice</value>
+  </data>
+  <data name="UISupportPuDevice1" xml:space="preserve">
+    <value>UISupportPuDevice1</value>
+  </data>
+  <data name="UISupportPuDevice2" xml:space="preserve">
+    <value>UISupportPuDevice2</value>
+  </data>
+  <data name="UISupportPuDevice3" xml:space="preserve">
+    <value>UISupportPuDevice3</value>
+  </data>
+  <data name="ModuleCompWarrantyUrl" xml:space="preserve">
+    <value>ComputerInfoWarrantyUrl</value>
+  </data>
+  <data name="ModuleCompWarrantyTooltipLess" xml:space="preserve">
+    <value>ComputerInfoWarrantyTooltipLess</value>
+  </data>
+  <data name="ModuleCompWarrantyTooltipMore" xml:space="preserve">
+    <value>ComputerInfoWarrantyTooltipMore</value>
+  </data>
+  <data name="UISupportMessageUrl" xml:space="preserve">
+    <value>UISupportMessageUrl</value>
+  </data>
+  <data name="EfecteCat1End" xml:space="preserve">
+    <value>[/efecte-cat1]</value>
+  </data>
+  <data name="EfecteCat1Start" xml:space="preserve">
+    <value>[efecte-cat1]</value>
+  </data>
+  <data name="EfecteCat2End" xml:space="preserve">
+    <value>[/efecte-cat2]</value>
+  </data>
+  <data name="EfecteCat2Start" xml:space="preserve">
+    <value>[efecte-cat2]</value>
+  </data>
+  <data name="EfecteCat3End" xml:space="preserve">
+    <value>[/efecte-cat3]</value>
+  </data>
+  <data name="EfecteCat3Start" xml:space="preserve">
+    <value>[efecte-cat3]</value>
+  </data>
+  <data name="EfecteDescEnd" xml:space="preserve">
+    <value>[/efecte-desc]</value>
+  </data>
+  <data name="EfecteDescStart" xml:space="preserve">
+    <value>[efecte-desc]</value>
+  </data>
+  <data name="EfecteMail1End" xml:space="preserve">
+    <value>[/efecte-email1]</value>
+  </data>
+  <data name="EfecteMail1Start" xml:space="preserve">
+    <value>[efecte-email1]</value>
+  </data>
+  <data name="EfecteReqtEnd" xml:space="preserve">
+    <value>[/efecte-reqt]</value>
+  </data>
+  <data name="EfecteReqtStart" xml:space="preserve">
+    <value>[efecte-reqt]</value>
+  </data>
+  <data name="EfecteSgEnd" xml:space="preserve">
+    <value>[/efecte-sg]</value>
+  </data>
+  <data name="EfecteSgStart" xml:space="preserve">
+    <value>[efecte-sg]</value>
+  </data>
+  <data name="EfecteMail2End" xml:space="preserve">
+    <value>[/efecte-email2]</value>
+  </data>
+  <data name="EfecteMail2Start" xml:space="preserve">
+    <value>[efecte-email2]</value>
+  </data>
+  <data name="UserWarrantyExclude" xml:space="preserve">
+    <value>WarrantyExclude</value>
+  </data>
+  <data name="DefaultWarranty" xml:space="preserve">
+    <value>DefaultWarranty</value>
+  </data>
+  <data name="UserWarrantyPopup" xml:space="preserve">
+    <value>LastWarrantyPopup</value>
+  </data>
+  <data name="UIWarrantyWTDTitle" xml:space="preserve">
+    <value>UIWarrantyWTDTitle</value>
+  </data>
+  <data name="ModuleCompIsEncrypt" xml:space="preserve">
+    <value>ComputerInfoIsEncrypt</value>
+  </data>
+  <data name="ModuleCompNotEncrypt" xml:space="preserve">
+    <value>ComputerInfoNotEncrypt</value>
+  </data>
+  <data name="VecktorLock" xml:space="preserve">
+    <value>F1 M 22.17,36.4216L 25.3369,36.4216L 25.3369,31.6711C 25.3369,24.6745 31.0087,19.0027 38.0053,19.0027C 45.0019,19.0027 50.6737,24.6745 50.6737,31.6711L 50.6737,36.4216L 53.841,36.4216L 53.8411,57.008L 22.17,57.008L 22.17,36.4216 Z M 45.9231,31.6711C 45.9231,27.2982 42.3782,23.7533 38.0053,23.7533C 33.6324,23.7533 30.0875,27.2982 30.0875,31.6711L 30.0875,36.4216L 45.923,36.4216L 45.9231,31.6711 Z</value>
+  </data>
+  <data name="VecktorLockOpen" xml:space="preserve">
+    <value>F1 M 22.1698,36.4215L 25.3366,36.4215L 25.3367,31.6711C 25.3367,24.6745 31.0085,19.0027 38.0051,19.0027C 45.0017,19.0027 50.6735,24.6745 50.6735,31.6711L 45.9228,31.6711C 45.9228,27.2982 42.3779,23.7533 38.0051,23.7533C 33.6322,23.7533 30.0873,27.2982 30.0873,31.6711L 30.0873,36.4216L 53.8408,36.4215L 53.8409,57.008L 22.1698,57.008L 22.1698,36.4215 Z</value>
+  </data>
+</root>

@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="University_Menu.Pages.Settings.About"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel MinWidth="200">
+                <TextBlock Text="ABOUT" Style="{StaticResource Heading2}" />
+                <TextBlock Name="textVersion" Margin="0,8,0,0" TextWrapping="Wrap">
+                    University Menu (for Windows) vXX.YY.ZZ build KKKK
+                </TextBlock>
+                <TextBlock Name="textCopyright" Margin="0,0,0,14" TextWrapping="Wrap">
+                    © 2014-20xx Juha Myllys
+                </TextBlock>
+                <Separator/>
+                <TextBlock TextWrapping="Wrap">
+                    This program is free software: you can redistribute it and/or modify
+                    it under the terms of the GNU General Public License as published by
+                    the Free Software Foundation, either version 3 of the License, or
+                    (at your option) any later version.
+                    <LineBreak/><LineBreak/>
+
+                    This program is distributed in the hope that it will be useful,
+                    but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                    GNU General Public License for more details.
+                    <LineBreak/><LineBreak/>
+
+                    You should have received a copy of the GNU General Public License
+                    along with this program. If not, see
+                    <Hyperlink NavigateUri="http://www.gnu.org/licenses/" RequestNavigate="Hyperlink_RequestNavigate">
+                        http://www.gnu.org/licenses/
+                    </Hyperlink>.
+                </TextBlock>
+                <Separator Margin="0,6,0,0"/>
+                <TextBlock Margin="0,14,0,0" TextWrapping="Wrap">
+                    email: 
+                    <Hyperlink NavigateUri="mailto:helpdesk@helsinki.fi" RequestNavigate="Hyperlink_RequestNavigate">
+                        helpdesk@helsinki.fi
+                    </Hyperlink>
+                        / web:
+                    <Hyperlink NavigateUri="http://www.helsinki.fi/helpdesk" RequestNavigate="Hyperlink_RequestNavigate">
+                        http://www.helsinki.fi/helpdesk
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="0,8,0,0" TextWrapping="Wrap" FontWeight="Bold">
+                    Packages:
+                </TextBlock>
+                <TextBlock>
+                    <Hyperlink NavigateUri="http://www.codeproject.com/Articles/36468/WPF-NotifyIcon" RequestNavigate="Hyperlink_RequestNavigate">
+                        Hardcodet WPF NotifyIcon
+                    </Hyperlink>
+                    copyright (c) 2016 Philipp Sumi<LineBreak/>
+                    <Hyperlink NavigateUri="https://github.com/firstfloorsoftware/mui" RequestNavigate="Hyperlink_RequestNavigate">
+                        Modern UI for WPF (MUI)
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="0,8,0,0" TextWrapping="Wrap" FontWeight="Bold">
+                    Icons:
+                </TextBlock>
+                <TextBlock>
+                    <Hyperlink NavigateUri="http://modernuiicons.com/" RequestNavigate="Hyperlink_RequestNavigate">
+                        Modern UI Icons
+                    </Hyperlink>
+                    (<Hyperlink NavigateUri="https://github.com/Templarian/WindowsIcons/blob/master/WindowsPhone/license.txt" RequestNavigate="Hyperlink_RequestNavigate">
+                        License
+                    </Hyperlink>)
+                    <LineBreak/>
+                    A logo for University of Helsinki © 
+                    <Hyperlink NavigateUri="http://www.helsinki.fi/university" RequestNavigate="Hyperlink_RequestNavigate">
+                        University of Helsinki
+                    </Hyperlink>
+                    
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

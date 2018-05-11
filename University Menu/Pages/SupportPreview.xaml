@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="University_Menu.Pages.SupportPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Name="title" Text="PREVIEW" Style="{StaticResource Heading2}" />
+                <TextBlock FontSize="6"></TextBlock>
+                <TextBlock Name="message" TextWrapping="Wrap" Text="The following message will be sending to the University of Helsinki Helpdesk. Please check that the information bellow is correct and then click the send button to send the message." />
+                <TextBlock></TextBlock>
+                <TextBox x:Name="messageTitle" Width="520" Height="25" HorizontalAlignment="Left" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"></TextBox>
+                <TextBox x:Name="messageText" Margin="0,2,0,0" Width="520" Height="230" HorizontalAlignment="Left" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"></TextBox>
+                <TextBox x:Name="messageFooter" Margin="0,2,0,0" Width="520" Height="40" HorizontalAlignment="Left" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"></TextBox>
+                <TextBlock></TextBlock>
+
+                <StackPanel Name="gridCanNotSend">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Canvas Grid.Column="0" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="appbar_hazard" Width="21" Height="21" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" HorizontalAlignment="Left">
+                            <Path Width="19" Height="19" Stretch="Uniform" Fill="Red" Data="F1 M 12.2495,36.8804L 36.8804,12.2496C 37.4987,11.6312 38.5012,11.6312 39.1196,12.2496L 63.7504,36.8804C 64.3688,37.4988 64.3688,38.5013 63.7504,39.1196L 39.1196,63.7505C 38.5013,64.3688 37.4987,64.3688 36.8804,63.7505L 12.2495,39.1196C 11.6312,38.5013 11.6312,37.4988 12.2495,36.8804 Z M 38,45.125C 36.0325,45.125 34.4375,46.72 34.4375,48.6875C 34.4375,50.655 36.0325,52.25 38,52.25C 39.9675,52.25 41.5625,50.655 41.5625,48.6875C 41.5625,46.72 39.9675,45.125 38,45.125 Z M 34.4375,23.75L 35.625,42.75L 40.375,42.75L 41.5625,23.75L 34.4375,23.75 Z"/>
+                        </Canvas>
+                        <TextBlock Name="hazard" Grid.Column="1" TextWrapping="Wrap" Margin="5,0,0,0" VerticalAlignment="Center">
+                                Some of the required fields are missing. Please check that all required fields are filled in the support request form.
+                        </TextBlock>
+                    </Grid>
+                    <TextBlock></TextBlock>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <Button IsDefault="True" IsEnabled="False" x:Name="send" Click="send_Click">Send</Button>
+                    <Button IsCancel="True" x:Name="edit" Margin="15,0,0,0" Click="edit_Click">Edit</Button>
+                    <Button Visibility="Collapsed" x:Name="cancel" Margin="15,0,0,0" Click="cancel_Click">Cancel</Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
