@@ -1,0 +1,33 @@
+﻿<mui:ModernWindow x:Class="University_Menu.UI"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  mc:Ignorable="d" 
+                  d:DesignHeight="400" d:DesignWidth="600"
+                  Title="University Menu" IsTitleVisible="False"
+                  LogoData="F1 M 15.8434,33L 19.1213,33L 19.1213,29.7059L 15.8434,29.7059L 15.8434,33 M 19.1213,18.1779L 15.8434,18.1779L 15.8434,14.8841L 19.1213,14.8841M 34.9648,21.934C 33.7031,19.1453 30.87,18.7386 29.0968,17.5766C 28.2479,17.0205 27.9042,15.9039 27.7693,14.9704C 26.9337,15.0578 25.5426,15.0702 24.8781,13.373C 24.3556,12.0381 24.5722,9.82622 22.8236,7.95179C 21.2334,6.24757 19.2773,5.68595 17.4824,5.81251C 19.6821,7.29038 18.8148,9.51849 17.2175,9.51849C 14.994,9.51849 14.3722,6.82764 11.1178,6.82764C 10.3732,6.82764 9.71734,7.06124 9.30816,7.33297C 11.1308,7.56431 11.567,9.06603 12.1366,10.4252C 12.5895,11.5053 13.399,12.1349 14.5842,12.4641C 14.3702,12.5879 13.8586,12.7399 13.1971,12.7399C 11.7597,12.7399 10.7585,11.98 9.72923,10.9142C 8.82339,9.97661 7.81299,9.08789 6.11883,9.08789C 5.28543,9.08789 4.64731,9.35312 4.42634,9.50259C 5.35634,9.64981 6.73001,10.2069 6.73001,11.1955C 6.73001,12.0406 5.79962,12.3641 5.03736,11.5551C 4.18859,10.6544 2.99705,9.97328 1.63354,9.97328C 0.959956,9.97328 0.286306,10.189 -5.26468e-007,10.4691C 1.616,10.6564 2.57318,11.699 3.57365,14.0239C 4.13829,15.3362 4.94257,16.5769 6.96745,16.6002C 7.88903,16.6113 9.19741,16.1708 9.96556,16.9115C 10.6924,17.613 10.4484,18.5322 10.781,19.2778C 11.1993,20.215 12.0666,20.6979 13.7627,20.7869C 12.3557,21.9697 8.99249,21.2598 7.84725,20.0513C 7.99775,23.0772 10.3732,25.7915 15.0887,24.5152C 15.9085,24.2934 16.493,24.419 16.8086,25.2523C 17.2413,26.3964 18.267,26.5862 19.2362,26.4651C 21.4526,26.1895 22.768,26.6379 24.0438,28.169C 24.3225,25.6357 22.5199,24.1466 21.3876,23.4349C 20.309,22.7571 20.2036,22.0524 20.1903,21.5065C 20.9708,22.4037 21.9881,22.7837 23.0464,22.9335C 24.876,23.1922 26.1866,23.7048 26.8804,24.6907C 27.083,21.905 24.1727,21.2756 23.816,20.1039C 24.7316,20.7043 25.4065,20.9225 26.3601,20.8495C 27.6321,20.7527 29.1788,19.7493 30.3196,21.7134C 31.7758,20.7624 33.6838,21.1013 34.9648,21.934 M 15.8434,3.35595L 19.1213,3.35595L 19.1213,0.0621872L 15.8434,0.0621872L 15.8434,3.35595 Z"
+                  ContentSource="/Pages/CheckupTab.xaml" Visibility="Visible" MinWidth="500" Unloaded="ModernWindow_Unloaded" WindowStartupLocation="CenterScreen" Icon="Resources/NotifyIcon_Black.ico">
+    <mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="Notifications">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="No notifications" Source="/Pages/NoNotifications.xaml"/>
+                <mui:Link DisplayName="Open a secure HY-VPN connection" Source="/Pages/CheckupTab.xaml"/>
+                <mui:Link DisplayName="Home directory space is running low" Source="/Pages/NetworkTab.xaml" />
+                <mui:Link DisplayName="Waiting for restart" Source="/Pages/RebootTab.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Support Request">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="Form" Source="/Pages/SupportRequest.xaml" />
+                <mui:Link DisplayName="Preview" Source="/Pages/SupportPreview.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+    </mui:ModernWindow.MenuLinkGroups>
+
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="settings" Source="/Pages/SettingsPage.xaml" />
+        <mui:Link DisplayName="help" Source="http://www.helsinki.fi/helpdesk" />
+    </mui:ModernWindow.TitleLinks>
+</mui:ModernWindow>

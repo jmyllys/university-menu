@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="University_Menu.UserControls.WTDNetwork"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:University_Menu.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid>
+        <Expander>
+            <Expander.Header>
+                <StackPanel>
+                    <TextBlock Name="wtdTitle" Text="What can be done now?" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
+                </StackPanel>
+            </Expander.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <Border Name="borderHome" Margin="0,10,4,0" Background="Transparent" MouseEnter="borderHome_MouseEnter" MouseLeave="borderHome_MouseLeave" MouseDown="borderHome_MouseDown">
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="appbar_magnify" Width="22.1" Height="22.1" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Name="pathHome" Width="22.1" Height="22.1" Stretch="Fill" Fill="#FF000000" Data="F1 M 42.5,22C 49.4036,22 55,27.5964 55,34.5C 55,41.4036 49.4036,47 42.5,47C 40.1356,47 37.9245,46.3435 36,45.2426L 26.9749,54.2678C 25.8033,55.4393 23.9038,55.4393 22.7322,54.2678C 21.5607,53.0962 21.5607,51.1967 22.7322,50.0251L 31.7971,40.961C 30.6565,39.0755 30,36.8644 30,34.5C 30,27.5964 35.5964,22 42.5,22 Z M 42.5,26C 37.8056,26 34,29.8056 34,34.5C 34,39.1944 37.8056,43 42.5,43C 47.1944,43 51,39.1944 51,34.5C 51,29.8056 47.1944,26 42.5,26 Z "/>
+                        </Canvas>
+                        <TextBlock Name="wtdHome" Grid.Row="1" TextWrapping="Wrap" Margin="0,4,0,0" TextAlignment="Center">Go through your home directory</TextBlock>
+                    </Grid>
+                </Border>
+
+                <Border Name="borderHYData" Grid.Column="1" Margin="4,10,4,0" Background="Transparent" MouseEnter="borderHYData_MouseEnter" MouseLeave="borderHYData_MouseLeave" MouseDown="borderHYData_MouseDown">
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="appbar_folder_open" Width="30.77" Height="20" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Name="pathHYData" Width="30.77" Height="20" Stretch="Fill" Fill="#FF000000" Data="F1 M 19,50L 28,34L 63,34L 54,50L 19,50 Z M 19,28.0001L 35,28C 36,25 37.4999,24.0001 37.4999,24.0001L 48.75,24C 49.3023,24 50,24.6977 50,25.25L 50,28L 53.9999,28.0001L 53.9999,32L 27,32L 19,46.4L 19,28.0001 Z "/>
+                        </Canvas>
+                        <TextBlock Name="wtdHYData" Grid.Row="1" TextWrapping="Wrap" Margin="0,4,0,0" TextAlignment="Center">Move files to the local folder</TextBlock>
+                    </Grid>
+                </Border>
+
+                <Border Name="borderWeb" Grid.Column="2" Margin="4,10,0,0" Background="Transparent" MouseEnter="borderWeb_MouseEnter" MouseLeave="borderWeb_MouseLeave" MouseDown="borderWeb_MouseDown">
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="appbar_browser" Width="25" Height="25" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                            <Path Name="pathWeb" Width="25" Height="25" Stretch="Fill" Fill="#FF000000" Data="F1 M 45,31C 53.2843,31 60,37.7157 60,46C 60,54.2843 53.2843,61 45,61C 36.7157,61 30,54.2843 30,46C 30,37.7157 36.7157,31 45,31 Z M 45,33.1429C 44.3496,33.1429 43.7105,33.1912 43.0861,33.2844C 42.9524,33.5754 42.8571,33.8948 42.8571,34.2143C 42.8571,35.2857 41.7857,33.1429 40.7143,35.2857C 39.6429,37.4286 40.7143,35.2857 40.7143,37.4286C 40.7143,38.5 39.1637,37.7247 39.6429,37.9643C 40.7143,38.5 40.7143,38.5 39.6429,39.5714C 39.6429,39.5714 37.5,38.5 37.5,39.5714C 37.5,40.6429 36.4286,40.6429 35.3571,40.6429C 34.2857,40.6429 35.3571,42.7857 34.2857,42.7857C 33.4619,42.7857 33.9049,41.5189 33.1797,40.9333C 32.904,41.5756 32.6792,42.2449 32.5102,42.9361C 33.2323,43.5831 33.3532,46.1389 34.2857,47.0714C 35.3571,46 35.3571,47.0714 36.4286,47.0714C 37.5,47.0714 37.5,47.0714 38.0357,48.1429C 39.1071,48.1429 39.6429,49.2143 40.7143,50.2857C 41.7857,51.3571 43.9286,51.3572 43.9286,52.4286C 43.9286,53.5 42.8571,52.4286 42.8571,54.5714C 42.8571,55.6429 42.8571,55.6429 41.7857,55.6429C 41.1111,55.6429 40.4365,56.9172 40.0293,57.861C 41.5585,58.5026 43.2378,58.8571 45,58.8571C 48.5986,58.8571 51.8518,57.3788 54.1856,54.9962L 53.5714,53.7679C 53.5714,53.7679 54.9107,51.625 53.8393,50.5536C 52.7678,49.4822 52.7678,48.4107 52.7678,48.4107C 52.7678,48.4107 50.625,50.5536 49.5536,49.4822C 48.4821,48.4107 48.4821,49.4822 47.4107,47.3393C 46.3393,45.1964 48.4821,44.125 48.4821,44.125C 48.4821,44.125 48.4821,41.9822 49.5536,41.9822C 50.625,41.9822 51.6964,39.8393 53.8393,41.9822C 53.8393,41.9822 55.0776,41.1566 56.8295,40.9548C 56.28,39.6681 55.5267,38.4891 54.6101,37.4586C 54.4177,37.597 54.1658,37.6965 53.8393,37.6965C 52.7678,37.6964 54.9107,39.8393 53.8393,39.8393C 52.7678,39.8393 52.7678,38.7679 51.6964,38.7679C 50.625,38.7679 50.625,39.8393 49.5536,40.9107C 48.4821,41.9822 49.5536,40.9107 48.4821,39.8393C 47.4107,38.7679 50.625,39.8393 49.5536,38.7679C 48.4821,37.6964 50.625,37.6965 50.625,36.625C 50.625,35.7847 51.9432,35.6034 52.5118,35.5643C 51.8935,35.1185 51.234,34.7262 50.625,34.4822C 51.6964,35.5536 49.5536,36.625 48.4821,36.625C 47.4757,36.625 48.36,34.7343 48.471,33.6169C 47.3669,33.308 46.2027,33.1429 45,33.1429 Z M 32.1429,46C 32.1429,49.7817 33.7755,53.182 36.3744,55.5346L 35.3571,53.5C 34.2857,53.5 33.75,51.0893 33.75,50.0179C 33.75,49.158 33.405,48.4707 33.8225,47.679C 32.3108,46.1608 33.2143,46.9839 33.2143,46C 33.2143,45.49 32.7287,44.9799 32.2198,44.5854L 32.1429,46 Z M 18,21L 58,21L 58,36.6705C 57.1478,35.4852 56.1375,34.4211 55,33.5092L 55,26L 21,26L 21,46L 29,46C 29,47.0254 29.0965,48.0283 29.2808,49L 18,49L 18,21 Z "/>
+                        </Canvas>
+                        <TextBlock Name="wtdWeb" Grid.Row="1" TextWrapping="Wrap" Margin="0,4,0,0" TextAlignment="Center">Read more instructions at web</TextBlock>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Expander>
+    </Grid>
+</UserControl>
