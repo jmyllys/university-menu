@@ -16,11 +16,11 @@ using System.Xml;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WUApiLib;
 using static System.String;
 using static System.Environment;
 using System.Windows;
 using FirstFloor.ModernUI.Presentation;
+using System.DirectoryServices;
 
 namespace University_Menu
 {
@@ -140,9 +140,7 @@ namespace University_Menu
         {
             try
             {
-                int output;
-
-                if (int.TryParse(node.Attributes[attribute].InnerText, out output)) { return output; }
+                if (int.TryParse(node.Attributes[attribute].InnerText, out int output)) { return output; }
                 else { return defaultValue; }
             }
             catch { return defaultValue; }
@@ -152,9 +150,7 @@ namespace University_Menu
         {
             try
             {
-                DateTime output;
-
-                if (DateTime.TryParse(node.Attributes[attribute].InnerText, out output)) { return output; }
+                if (DateTime.TryParse(node.Attributes[attribute].InnerText, out DateTime output)) { return output; }
                 else { return defaultValue; }
             }
             catch { return defaultValue; }
@@ -357,7 +353,7 @@ namespace University_Menu
 
             balloonShowTime = GetSettingValue(nodes.SelectSingleNode(singleNode), "BalloonShowTime", 16000);
 
-            checkupMinDays = GetSettingValue(nodes.SelectSingleNode(singleNode), "CheckupStartShow", 50);
+            checkupMinDays = GetSettingValue(nodes.SelectSingleNode(singleNode), "CheckupStartShow", 30);
             checkupMaxDays = GetSettingValue(nodes.SelectSingleNode(singleNode), "CheckupEndShow", 180);
             checkupBalloonInterval = GetSettingValue(nodes.SelectSingleNode(singleNode), "CheckupBalloonInterval", 3);
             checkupPopupInterval = GetSettingValue(nodes.SelectSingleNode(singleNode), "CheckupPopupInterval", 8);
@@ -503,9 +499,7 @@ namespace University_Menu
         {
             try
             {
-                DateTime output;
-
-                if (DateTime.TryParse(Registry.GetValue(regPath, regValue, defaultValue).ToString(), out output))
+                if (DateTime.TryParse(Registry.GetValue(regPath, regValue, defaultValue).ToString(), out DateTime output))
                 { return output; }
                 else
                 { return defaultValue; }
@@ -592,6 +586,7 @@ namespace University_Menu
             if (exit) { return text; } else { VariableConvert(ref text, "%os%", variable.OperatingSystem, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%osversion%", variable.OSVersion, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%winupdatetime%", variable.WinUpdateTime, ref exit); }
+            if (exit) { return text; } else { VariableConvert(ref text, "%winupdatecheck%", variable.WinUpdateSearch, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%sysboottime%", (variable.SystemBootTime != DateTime.MinValue ? 
                 variable.SystemBootTime.ToString() : GetTranslation(Properties.Resources.NA)), ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%defaultprinter%", variable.DefaultPrinter, ref exit); }
@@ -600,6 +595,7 @@ namespace University_Menu
             if (exit) { return text; } else { VariableConvert(ref text, "%room%", variable.Room, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%warranty%", variable.Warranty, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%profitcenter%", variable.ProfitCenter, ref exit); }
+            if (exit) { return text; } else { VariableConvert(ref text, "%diskcryptstatus%", variable.DiskCryptStatus, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%ipaddress%", variable.IPAddress, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%macaddress%", variable.MACAddress, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%domain%", variable.Domain, ref exit); }
@@ -638,8 +634,7 @@ namespace University_Menu
                 {
                     try
                     {
-                        double input;
-                        double.TryParse(WMIQuery("Win32_ComputerSystem", "TotalPhysicalMemory").Trim(), out input);
+                        double.TryParse(WMIQuery("Win32_ComputerSystem", "TotalPhysicalMemory").Trim(), out double input);
 
                         return input;
                     }
@@ -682,31 +677,8 @@ namespace University_Menu
                     catch { return Properties.Resources.NA; }
                 }
             }
-            public string WinUpdateTime
-            {
-                get
-                {
-                    try
-                    {
-                        UpdateSession session = new UpdateSession();
-                        IUpdateSearcher searcher = session.CreateUpdateSearcher();
-                        IUpdateHistoryEntryCollection history = searcher.QueryHistory(0, 1);
-                        string input = Properties.Resources.NA;
-                        DateTime output, value = new DateTime(2000, 1, 1);
-
-                        for (int i = 0; i < 1; ++i) { input = history[i].Date.ToString(); }
-
-                        if (input != Properties.Resources.NA)
-                        {
-                            if (!DateTime.TryParse(input, out output)) { output = DateTime.Now; }
-                            if (output <= value) { input = Properties.Resources.NA; }
-                        }
-
-                        return input.Trim();
-                    }
-                    catch { return Properties.Resources.NA; }
-                }
-            }
+            public string WinUpdateTime { get { return WMIQuery("hycustomclass", "WSUSInstall"); } }
+            public string WinUpdateSearch { get { return WMIQuery("hycustomclass", "WSUSSearch"); } }
             public DateTime SystemBootTime
             {
                 get
@@ -727,12 +699,20 @@ namespace University_Menu
                 {
                     try
                     {
-                        using (UserPrincipal up = UserPrincipal.Current)
+                        using (DirectoryEntry entry = new DirectoryEntry("LDAP://ad.helsinki.fi:636")
+                        { AuthenticationType = AuthenticationTypes.Secure | AuthenticationTypes.SecureSocketsLayer | AuthenticationTypes.ServerBind })
+                        using (DirectorySearcher search = new DirectorySearcher(entry)
+                        { Filter = "(&(objectClass=user)(objectCategory=person)(samaccountname=" + UserName + "))" })
                         {
-                            if (!IsNullOrWhiteSpace(up.HomeDrive))
+                            search.PropertiesToLoad.Add("homedrive");
+
+                            SearchResult user = search.FindOne();
+                            string drive = user?.Properties["homedrive"][0].ToString() ?? Empty;
+
+                            if (!IsNullOrWhiteSpace(drive))
                             {
-                                DriveInfo di = new DriveInfo(up.HomeDrive);
-                                return di.AvailableFreeSpace;
+                                DriveInfo info = new DriveInfo(drive);
+                                return info.AvailableFreeSpace;
                             }
                             else { return -1; }
                         }
@@ -746,17 +726,46 @@ namespace University_Menu
                 {
                     try
                     {
-                        using (UserPrincipal up = UserPrincipal.Current)
+                        using (DirectoryEntry entry = new DirectoryEntry("LDAP://ad.helsinki.fi:636")
+                        { AuthenticationType = AuthenticationTypes.Secure | AuthenticationTypes.SecureSocketsLayer | AuthenticationTypes.ServerBind })
+                        using (DirectorySearcher search = new DirectorySearcher(entry)
+                        { Filter = "(&(objectClass=user)(objectCategory=person)(samaccountname=" + UserName + "))" })
                         {
-                            if (!IsNullOrWhiteSpace(up.HomeDrive))
+                            search.PropertiesToLoad.Add("homedrive");
+
+                            SearchResult user = search.FindOne();
+                            string drive = user?.Properties["homedrive"][0].ToString() ?? Empty;
+
+                            if (!IsNullOrWhiteSpace(drive))
                             {
-                                DriveInfo di = new DriveInfo(up.HomeDrive);
-                                return di.TotalSize;
+                                DriveInfo info = new DriveInfo(drive);
+                                return info.TotalSize;
                             }
                             else { return -1; }
                         }
                     }
                     catch { return -1; }
+                }
+            }
+            public string DiskCryptStatus
+            {
+                get
+                {
+                    try
+                    {
+                        StringBuilder input = new StringBuilder();
+                        string[] textIsCrypted = GetTranslation(Properties.Resources.ModuleCompIsEncrypt).Split(';');
+                        string[] textNotCrypted = GetTranslation(Properties.Resources.ModuleCompNotEncrypt).Split(';');
+
+                        foreach (var disk in GetCryptedDisks())
+                        {
+                            if (disk.Crypted) { AddText(ref input, textIsCrypted[0] + disk.Name + textIsCrypted[1]); }
+                            else { AddText(ref input, textNotCrypted[0] + disk.Name + textNotCrypted[1]); }
+                        }
+
+                        return (!IsNullOrWhiteSpace(input.ToString()) ? input.ToString().Trim() : Properties.Resources.NA);
+                    }
+                    catch { return Properties.Resources.NA; }
                 }
             }
         }

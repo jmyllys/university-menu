@@ -28,7 +28,9 @@ namespace University_Menu.UserControls
 
             purchaseItem = item;
             bulletin.Content = MainWindow.GetTranslation(Properties.Resources.UISupportBulletin, hash);
+            redirect.Content = MainWindow.GetTranslation(Properties.Resources.UISupportBulletin, hash);
             infoBulletin.Text = MainWindow.GetTranslation(Properties.Resources.UISupportPuBulletinInfo, hash);
+            infoRedirect.Text = MainWindow.GetTranslation(Properties.Resources.UISupportPuRedirectInfo, hash);
 
             Hyperlink flamma = new Hyperlink(new Run(MainWindow.GetTranslation(Properties.Resources.UISupportPuFlammaURL, hash)))
             { NavigateUri = new Uri(MainWindow.GetTranslation(Properties.Resources.UISupportPuFlammaURL, hash)) };
@@ -36,6 +38,7 @@ namespace University_Menu.UserControls
             flamma.MouseEnter += Hyperlink_MouseEnter;
             flamma.MouseLeave += Hyperlink_MouseLeave;
             infoBulletin.Inlines.Add(flamma);
+            infoRedirect.Inlines.Add(flamma);
 
             orders.Content = MainWindow.GetTranslation(Properties.Resources.UISupportPuOrders, hash);
             attachments.Content = MainWindow.GetTranslation(Properties.Resources.UISupportAttachments, hash);

@@ -1717,6 +1717,15 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UISupportPuRedirectInfo.
+        /// </summary>
+        internal static string UISupportPuRedirectInfo {
+            get {
+                return ResourceManager.GetString("UISupportPuRedirectInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UISupportPuType.
         /// </summary>
         internal static string UISupportPuType {

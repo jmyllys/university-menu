@@ -90,7 +90,7 @@ namespace University_Menu
         public static bool chatExternalBrowsing = false;
 
         // Notifications
-        public static int checkupMinDays = 50;
+        public static int checkupMinDays = 30;
         public static int checkupMaxDays = 180;
         public static int checkupPopupInterval = 8;
         public static int checkupBalloonInterval = 3;

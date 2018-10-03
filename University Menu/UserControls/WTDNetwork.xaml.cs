@@ -62,10 +62,7 @@ namespace University_Menu.UserControls
         private void borderHome_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.AppStarting;
-
-            using (UserPrincipal user = UserPrincipal.Current)
-            { MainWindow.Execute(user.HomeDrive, Empty); }
-
+            MainWindow.Execute(MainWindow.moduleUIHomeDrive, Empty);
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 

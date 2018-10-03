@@ -33,11 +33,10 @@ namespace University_Menu
             if (!allowCheckup) { return; }
 
             Variable var = new Variable();
-            string input = var.WinUpdateTime;
-            DateTime output;
+            string input = var.WinUpdateSearch;
             double comparison;
 
-            if (!DateTime.TryParse(input, out output)) { output = DateTime.Now; }
+            if (!DateTime.TryParse(input, out DateTime output)) { output = DateTime.Now; }
 
             if (days < 0) { comparison = (DateTime.Now - output).TotalDays; }
             else { comparison = days; }
@@ -242,9 +241,8 @@ namespace University_Menu
 
             Variable var = new Variable();
             string input = var.Warranty;
-            DateTime output;
 
-            if (!DateTime.TryParse(input, out output)) { output = DateTime.Now; }
+            if (!DateTime.TryParse(input, out DateTime output)) { output = DateTime.Now; }
 
             double lastPopup = (DateTime.Now - lastWarrantyPopup).TotalDays;
 

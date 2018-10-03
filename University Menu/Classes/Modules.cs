@@ -14,6 +14,7 @@ using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Management;
 using static System.String;
+using static System.Environment;
 
 namespace University_Menu
 {
@@ -22,10 +23,24 @@ namespace University_Menu
         public static void BuildModules(bool updateOnly = false)
         {
             if (!updateOnly) { ModuleList.Clear(); }
-            UserPrincipal user = null;
+            SearchResult user = null, other = null;
+            
+            try
+            {
+                using (DirectoryEntry entry = new DirectoryEntry("LDAP://ad.helsinki.fi:636")
+                { AuthenticationType = AuthenticationTypes.Secure | AuthenticationTypes.SecureSocketsLayer | AuthenticationTypes.ServerBind })
+                using (DirectorySearcher search = new DirectorySearcher(entry)
+                { Filter = "(&(objectClass=user)(objectCategory=person)(samaccountname=" + UserName + "))" })
+                {
+                    search.PropertiesToLoad.Add("*");
+                    user = search.FindOne();
 
-            try { user = UserPrincipal.Current; }
-            catch { }
+                    search.Filter = "(&(objectClass=*)";
+                    other = search.FindOne();
+                }
+            }
+            catch
+            { }
 
             #region UserInformation
             IconType moduleUIValue = IconType.Normal;
@@ -55,28 +70,35 @@ namespace University_Menu
                 Variable var = new Variable();
                 bool separatorCheck = false, italic = false;
 
-                moduleUIDisplayName = user?.DisplayName ?? moduleUIDisplayName;
+                moduleUIDisplayName = user?.Properties["displayname"][0].ToString() ?? moduleUIDisplayName;
 
-                moduleUIEmail = user?.EmailAddress ?? moduleUIEmail;
-                moduleUIMailbox = GetMailboxType(user);
-
-                try { moduleUILastPWSet = user.LastPasswordSet.Value; }
-                catch { }
-                try { moduleUIPWExpires = moduleUILastPWSet.AddDays(GetMaxPasswordAge().Days); }
+                moduleUIEmail = user?.Properties["mail"][0].ToString() ?? moduleUIEmail;
+                try { moduleUIMailbox = Convert.ToDouble(user.Properties["msExchRecipientTypeDetails"][0]); }
                 catch { }
 
-                try { moduleUIAccountExpires = user.AccountExpirationDate.Value; }
+                try { moduleUILastPWSet = (DateTime)user.Properties["pwdlastset"][0]; }
+                catch { }
+                try
+                {
+                    TimeSpan maxPwdAge = TimeSpan.MinValue;
+                    if (other.Properties.Contains("maxpwdage")) { maxPwdAge = TimeSpan.FromTicks((long)other.Properties["maxpwdage"][0]).Duration(); }
+
+                    moduleUIPWExpires = moduleUIPWExpires.AddDays(maxPwdAge.Days);
+                }
                 catch { }
 
-                try { moduleUIHomeDirectory = user?.HomeDirectory ?? moduleUIHomeDirectory; }
+                try { moduleUIAccountExpires = (DateTime)user.Properties["accountexpires"][0]; }
                 catch { }
 
-                try { moduleUIHomeDrive = user?.HomeDrive ?? moduleUIHomeDrive; }
+                try { moduleUIHomeDirectory = user?.Properties["homedirectory"][0].ToString() ?? moduleUIHomeDirectory; }
+                catch { }
+
+                try { moduleUIHomeDrive = user?.Properties["homedrive"][0].ToString() ?? moduleUIHomeDrive; }
                 catch { }
 
                 try
                 {
-                    if (IsNullOrWhiteSpace(user?.DisplayName)) { italic = true; }
+                    if (IsNullOrWhiteSpace(user?.Properties["displayname"][0].ToString())) { italic = true; }
                     else { italic = false; }
                 }
                 catch { italic = true; }
@@ -87,7 +109,7 @@ namespace University_Menu
 
                 try
                 {
-                    if (IsNullOrWhiteSpace(user?.EmailAddress)) { italic = true; }
+                    if (IsNullOrWhiteSpace(user?.Properties["mail"][0].ToString())) { italic = true; }
                     else { italic = false; }
                 }
                 catch { italic = true; }
@@ -206,7 +228,6 @@ namespace University_Menu
 
                 Variable var = new Variable();
                 bool separatorCheck = false;
-                DateTime output;
 
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompHostname, var.Hostname, ref separatorCheck, updateOnly, true,
                     MenuIcon("F1 M 20,23.0002L 55.9998,23.0002C 57.1044,23.0002 57.9998,23.8956 57.9998,25.0002L 57.9999,46C 57.9999,47.1046 57.1045,48 55.9999,48L 41,48L 41,53L 45,53C 46.1046,53 47,53.8954 47,55L 47,57L 29,57L 29,55C 29,53.8954 29.8955,53 31,53L 35,53L 35,48L 20,48C 18.8954,48 18,47.1046 18,46L 18,25.0002C 18,23.8956 18.8954,23.0002 20,23.0002 Z M 21,26.0002L 21,45L 54.9999,45L 54.9998,26.0002L 21,26.0002 Z"));
@@ -223,8 +244,8 @@ namespace University_Menu
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompRoom, var.Room, ref separatorCheck, updateOnly, true);
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompProfit, var.ProfitCenter, ref separatorCheck, updateOnly, true);
 
-                if (DateTime.TryParse(var.Warranty, out output))
-                { AddModuleItem(ref ci, Properties.Resources.ModuleCompWarranty, output, ref separatorCheck, updateOnly, moduleNotifyDateComp, ref moduleCIvalue, reverseNotify: true); }
+                if (DateTime.TryParse(var.Warranty, out DateTime outputWarranty))
+                { AddModuleItem(ref ci, Properties.Resources.ModuleCompWarranty, outputWarranty, ref separatorCheck, updateOnly, moduleNotifyDateComp, ref moduleCIvalue, reverseNotify: true); }
                 else
                 { AddModuleItem(ref ci, Properties.Resources.ModuleCompWarranty, var.Warranty, ref separatorCheck, updateOnly, true); }
 
@@ -235,7 +256,7 @@ namespace University_Menu
 
                 try
                 {
-                    if (Environment.OSVersion.Version.Major <= 6 && Environment.OSVersion.Version.Minor <= 1)
+                    if (OSVersion.Version.Major <= 6 && OSVersion.Version.Minor <= 1)
                     {
                         icon = "F1 M 23.75,19.7917C 23.75,19.7917 25.3333,16.625 33.25,16.625C 37.1223,16.625 39.4162,17.9403 41.4185,19.4987L 36.8968,35.0898C 34.7402,33.6397 32.5299,32.4583 30.0833,32.4583C 23.75,32.4583 20.5833,34.0417 20.5833,34.0417L 23.75,19.7917 Z M 52.25,24.5417C 60.1667,24.5417 61.75,21.375 61.75,21.375L 57,37.2083C 57,37.2083 53.8333,40.375 47.5,40.375C 44.6133,40.375 42.0555,38.7303 39.5268,36.9402L 43.9792,21.588C 46.0059,23.181 48.3116,24.5417 52.25,24.5417 Z M 19,38.7917C 19,38.7917 20.5833,35.625 28.5,35.625C 31.9766,35.625 34.181,36.6853 36.0442,38.0298L 31.5082,53.6702C 29.5528,52.4186 27.5391,51.4583 25.3333,51.4583C 19,51.4583 15.8333,53.0417 15.8333,53.0417L 19,38.7917 Z M 47.5,43.5417C 55.4167,43.5417 57,40.375 57,40.375L 52.25,56.2083C 52.25,56.2083 49.0833,59.375 42.75,59.375C 39.6233,59.375 36.8825,57.4455 34.1466,55.4916L 38.6129,40.0916C 40.8001,41.8876 43.1576,43.5417 47.5,43.5417 Z";
                         r = 14;
@@ -247,43 +268,20 @@ namespace University_Menu
 
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompOS, var.OperatingSystem, ref separatorCheck, updateOnly, true, MenuIcon(icon, r, g, b));
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompVersion, var.OSVersion, ref separatorCheck, updateOnly, true);
-                AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, var.WinUpdateTime, ref separatorCheck, updateOnly, true);
+
+                if (DateTime.TryParse(var.WinUpdateTime, out DateTime outputWinUpd))
+                { AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, Convert.ToDateTime(outputWinUpd), ref separatorCheck, updateOnly, checkupMinDays, ref moduleCIvalue, reverseNotify:true); }
+                else
+                { AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, var.WinUpdateTime, ref separatorCheck, updateOnly, true); }
                 
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
 
-
-                // Collect all USB drives
-                ManagementObjectCollection diskdrives = new ManagementObjectSearcher("SELECT Caption, DeviceID FROM Win32_DiskDrive WHERE InterfaceType='USB'").Get();
-                List<string> usbDrives = new List<string>();
-
-                foreach (ManagementObject diskdrive in diskdrives)
+                foreach (var disk in GetCryptedDisks())
                 {
-                    foreach (ManagementObject disk in new ManagementObjectSearcher("ASSOCIATORS OF {Win32_DiskDrive.DeviceID='" + diskdrive["DeviceID"] + "'} WHERE AssocClass = Win32_DiskDriveToDiskPartition").Get())
-                    {
-                        foreach (ManagementObject partition in new ManagementObjectSearcher("ASSOCIATORS OF {Win32_DiskPartition.DeviceID='" + disk["DeviceID"] + "'} WHERE AssocClass = Win32_LogicalDiskToPartition").Get())
-                        { usbDrives.Add(partition["CAPTION"].ToString()); }
-                    }
-                }
-                //
-
-                foreach (var drive in System.IO.DriveInfo.GetDrives())
-                {
-                    if (drive.DriveType == System.IO.DriveType.Fixed)
-                    {
-                        bool skip = false;
-                        foreach (string usb in usbDrives) { if (usb.Substring(0,1) == drive.RootDirectory.ToString().Substring(0,1)) { skip = true; } }
-                        if (skip) { break; }
-
-                        IShellProperty prop = ShellObject.FromParsingName(drive.Name).Properties.GetProperty("System.Volume.BitLockerProtection");
-                        int? encrypt = (prop as ShellProperty<int?>).Value;
-
-                        if (encrypt.HasValue && (encrypt == 1 || encrypt == 3 || encrypt == 5))
-                        { AddModuleItem(ref ci, Properties.Resources.ModuleCompIsEncrypt, drive.Name, ref separatorCheck, updateOnly, true,
-                                MenuIcon(Properties.Resources.VecktorLock)); }
-                        else
-                        { AddModuleItem(ref ci, Properties.Resources.ModuleCompNotEncrypt, drive.Name, ref separatorCheck, updateOnly, true,
-                                MenuIcon(Properties.Resources.VecktorLockOpen)); }
-                    }
+                    if (disk.Crypted)
+                    { AddModuleItem(ref ci, Properties.Resources.ModuleCompIsEncrypt, disk.Name, ref separatorCheck, updateOnly, true, MenuIcon(Properties.Resources.VecktorLock));}
+                    else
+                    { AddModuleItem(ref ci, Properties.Resources.ModuleCompNotEncrypt, disk.Name, ref separatorCheck, updateOnly, true, MenuIcon(Properties.Resources.VecktorLockOpen));}
                 }
 
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
@@ -391,7 +389,7 @@ namespace University_Menu
                 });
 
                 string tagValue = Empty;
-                tagValue = MailboxType(GetMailboxType(user), true);
+                tagValue = MailboxType(moduleUIMailbox, true);
 
                 if (tagValue == Properties.Resources.NA) { MailboxType(moduleUIMailbox, true); }
                 if (tagValue == Properties.Resources.NA) { tagValue = mailboxLocal; }
@@ -447,13 +445,12 @@ namespace University_Menu
 
             ModuleList.Add(sr);
             PassSupport:;
-            #endregion
 
             // Support Request settings
             try
             {
-                sendSettings.Email = user?.EmailAddress;
-                sendSettings.Name = user?.DisplayName;
+                sendSettings.Email = moduleUIEmail;
+                sendSettings.Name = moduleUIDisplayName;
                 sendSettings.Signature = VariableConvert(GetTranslation(Properties.Resources.UIMessageInfo));
 
                 if (!IsNullOrWhiteSpace(sendSettings.Email) && !IsNullOrWhiteSpace(sendSettings.Name)) { sendSettings.Verified = true; }
@@ -467,9 +464,9 @@ namespace University_Menu
                 sendSettings.Verified = false;
             }
             //
+            #endregion
 
             WriteXML();
-            if (user != null) { user.Dispose(); }
         }
 
         private static MenuItem AddClipboardItem(string module)
@@ -727,7 +724,42 @@ namespace University_Menu
             }
             else
             {
-                if ((DateTime.Today - header).Days > notifyDate && enabled)
+                if (name == Properties.Resources.ModuleCompWinUpd)
+                {
+                    Variable var = new Variable();
+
+                    if (!DateTime.TryParse(var.WinUpdateSearch, out DateTime output)) { output = DateTime.Now; }
+                    double comparison = (DateTime.Now - output).TotalDays;
+
+                    if (comparison >= checkupMinDays)
+                    {
+                        if (comparison > checkupMaxDays)
+                        {
+                            fore = (darkTheme ? themeFore : themeForeOpposite);
+                            back = System.Windows.Media.Brushes.Red;
+                            clearValue = (darkTheme ? true : false);
+
+                            if (iconType.GetHashCode() < 3) { iconType = IconType.Red; }
+                        }
+                        else
+                        {
+                            fore = (darkTheme ? themeForeOpposite : themeFore);
+                            back = (darkTheme ? System.Windows.Media.Brushes.DarkOrange : System.Windows.Media.Brushes.Orange);
+                            clearValue = (darkTheme ? false : true);
+
+                            if (iconType.GetHashCode() < 2) { iconType = IconType.Yellow; }
+                        }
+                    }
+                    else
+                    {
+                        fore = themeFore;
+                        back = System.Windows.Media.Brushes.Transparent;
+                        clearValue = true;
+
+                        tooltipAdd = GetTranslation(Properties.Resources.ModuleUserInstructionsTooltip);
+                    }
+                }
+                else if ((DateTime.Today - header).Days > notifyDate && enabled)
                 {
                     fore = (darkTheme ? themeFore : themeForeOpposite);
                     back = System.Windows.Media.Brushes.Red;
@@ -924,38 +956,6 @@ namespace University_Menu
             ChangeNotificationIcon(iconState, Empty, ref iconState, true, true);
         }
 
-        private static TimeSpan GetMaxPasswordAge()
-        {
-            //xparrot @ http://houseofderek.blogspot.fi/2008/07/password-expiration-email-utility.html
-
-            using (Domain d = Domain.GetCurrentDomain())
-            using (DirectoryEntry domain = d.GetDirectoryEntry())
-            {
-                domain.AuthenticationType = AuthenticationTypes.Secure;
-
-                DirectorySearcher ds = new DirectorySearcher(domain, "(objectClass=*)", null, SearchScope.Base);
-                SearchResult sr = ds.FindOne();
-                TimeSpan maxPwdAge = TimeSpan.MinValue;
-                if (sr.Properties.Contains("maxPwdAge"))
-                    maxPwdAge = TimeSpan.FromTicks((long)sr.Properties["maxPwdAge"][0]);
-                return maxPwdAge.Duration();
-            }
-        }
-
-        private static double GetMailboxType(UserPrincipal user)
-        {
-            try
-            {
-                using (DirectoryEntry entry = user.GetUnderlyingObject() as DirectoryEntry)
-                {
-                    entry.AuthenticationType = AuthenticationTypes.Secure;
-
-                    return GetAttribute(entry, "msExchRecipientTypeDetails");
-                };
-            }
-            catch { return -1; }
-        }
-
         private static string MailboxType(double type, bool returnAddress = false)
         {
             try
@@ -973,28 +973,48 @@ namespace University_Menu
             catch { return Properties.Resources.NA; }
         }
 
-        private static long GetAttribute(DirectoryEntry entry, string attr)
+        public static List<DiskCryptInfo> GetCryptedDisks()
         {
-            //dunnry @ http://forums.asp.net/t/999913.aspx
-            //we will use the marshaling behavior of
-            //the searcher
+            List<DiskCryptInfo> diskList = new List<DiskCryptInfo>();
+            ManagementObjectCollection diskdrives = new ManagementObjectSearcher("SELECT Caption, DeviceID FROM Win32_DiskDrive WHERE InterfaceType='USB'").Get();
+            List<string> usbDrives = new List<string>();
 
-            using (DirectorySearcher ds = new DirectorySearcher(
-                entry, Format("({0}=*)", attr), new string[] { attr }, SearchScope.Base))
+            foreach (ManagementObject diskdrive in diskdrives)
             {
-                SearchResult sr;
-
-                try
-                { sr = ds.FindOne(); }
-                catch
-                { sr = null; }
-
-                if (sr != null)
+                foreach (ManagementObject disk in new ManagementObjectSearcher("ASSOCIATORS OF {Win32_DiskDrive.DeviceID='" + diskdrive["DeviceID"] + "'} WHERE AssocClass = Win32_DiskDriveToDiskPartition").Get())
                 {
-                    if (sr.Properties.Contains(attr)) return (long)sr.Properties[attr][0];
+                    foreach (ManagementObject partition in new ManagementObjectSearcher("ASSOCIATORS OF {Win32_DiskPartition.DeviceID='" + disk["DeviceID"] + "'} WHERE AssocClass = Win32_LogicalDiskToPartition").Get())
+                    { usbDrives.Add(partition["CAPTION"].ToString()); }
                 }
-                return -1;
             }
+
+            foreach (System.IO.DriveInfo drive in System.IO.DriveInfo.GetDrives())
+            {
+                if (drive.DriveType == System.IO.DriveType.Fixed)
+                {
+                    bool skip = false;
+                    foreach (string usb in usbDrives) { if (usb.Substring(0, 1) == drive.RootDirectory.ToString().Substring(0, 1)) { skip = true; } }
+                    if (skip) { continue; }
+
+                    IShellProperty prop = ShellObject.FromParsingName(drive.Name).Properties.GetProperty("System.Volume.BitLockerProtection");
+                    int? encrypt = (prop as ShellProperty<int?>).Value;
+
+                    DiskCryptInfo diskInfo = new DiskCryptInfo { Name = drive.Name };
+
+                    if (encrypt.HasValue && (encrypt == 1 || encrypt == 3 || encrypt == 5)) { diskInfo.Crypted = true; }
+                    else { diskInfo.Crypted = false; }
+
+                    diskList.Add(diskInfo);
+                }
+            }
+
+            return diskList;
+        }
+
+        public class DiskCryptInfo
+        {
+            public string Name { get; set; }
+            public bool Crypted = false;
         }
 
         private static void OWA_Click(object sender, RoutedEventArgs e)

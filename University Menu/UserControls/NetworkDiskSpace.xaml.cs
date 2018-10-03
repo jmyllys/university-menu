@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
+using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using static System.String;
+using static System.Environment;
 
 namespace University_Menu.UserControls
 {
@@ -32,39 +34,35 @@ namespace University_Menu.UserControls
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            using (UserPrincipal user = UserPrincipal.Current)
+            try
             {
                 MainWindow.Variable var = new MainWindow.Variable();
+                double free = var.HomeDriveFreeSpace, total = var.HomeDriveTotalSize;
+                string drive = MainWindow.moduleUIHomeDrive;
 
-                try
+                if (free >= 0 && total > 0 && !IsNullOrWhiteSpace(drive))
                 {
-                    double free = var.HomeDriveFreeSpace, total = var.HomeDriveTotalSize;
-                    string drive = user.HomeDrive;
+                    double percent = Math.Round(free / total * 100, 1);
+                    free = free / 1024 / 1024;
 
-                    if (free >= 0 && total > 0 && !IsNullOrWhiteSpace(drive))
-                    {
-                        double percent = Math.Round(free / total * 100, 1);
-                        free = free / 1024 / 1024;
-
-                        Application.Current.Dispatcher.Invoke(delegate
-                        {
-                            pathPie.Fill = MainWindow.themePath;
-                            diskSpace.Foreground = MainWindow.themePath;
-                            diskSpace.Text = MainWindow.GetTranslation(Properties.Resources.UINetworkDiskSpaceInfo, languageHashCode)
-                                .Replace("xx", free.ToString("#.##")).Replace("yy", percent.ToString()).Replace("zz", drive);
-                        });
-                    }
-                    else { throw new Exception(); }
-                }
-                catch
-                {
                     Application.Current.Dispatcher.Invoke(delegate
                     {
-                        diskSpace.Text = MainWindow.GetTranslation(Properties.Resources.UINetworkDiskSpaceInfoNA, languageHashCode);
-                        pathPie.Fill = Brushes.Gray;
-                        diskSpace.Foreground = Brushes.Gray;
+                        pathPie.Fill = MainWindow.themePath;
+                        diskSpace.Foreground = MainWindow.themePath;
+                        diskSpace.Text = MainWindow.GetTranslation(Properties.Resources.UINetworkDiskSpaceInfo, languageHashCode)
+                            .Replace("xx", free.ToString("#.##")).Replace("yy", percent.ToString()).Replace("zz", drive);
                     });
                 }
+                else { throw new Exception(); }
+            }
+            catch
+            {
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    diskSpace.Text = MainWindow.GetTranslation(Properties.Resources.UINetworkDiskSpaceInfoNA, languageHashCode);
+                    pathPie.Fill = Brushes.Gray;
+                    diskSpace.Foreground = Brushes.Gray;
+                });
             }
         }
     }

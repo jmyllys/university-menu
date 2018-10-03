@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using University_Menu.UserControls;
 using static System.String;
+using static System.Environment;
 
 namespace University_Menu.Pages
 {
@@ -125,10 +127,17 @@ namespace University_Menu.Pages
         {
             try
             {
-                using (UserPrincipal up = UserPrincipal.Current)
+                using (DirectoryEntry entry = new DirectoryEntry("LDAP://ad.helsinki.fi:636")
+                { AuthenticationType = AuthenticationTypes.Secure | AuthenticationTypes.SecureSocketsLayer | AuthenticationTypes.ServerBind })
+                using (DirectorySearcher search = new DirectorySearcher(entry)
+                { Filter = "(&(objectClass=user)(objectCategory=person)(samaccountname=" + UserName + "))" })
                 {
-                    MainWindow.sendSettings.Name = up.DisplayName;
-                    MainWindow.sendSettings.Email = up.EmailAddress;
+                    search.PropertiesToLoad.Add("displayname");
+                    search.PropertiesToLoad.Add("mail");
+
+                    SearchResult user = search.FindOne();
+                    MainWindow.sendSettings.Name = user?.Properties["displayname"][0].ToString() ?? Empty;
+                    MainWindow.sendSettings.Name = user?.Properties["mail"][0].ToString() ?? Empty;
                 }
             }
             catch

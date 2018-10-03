@@ -72,7 +72,7 @@ namespace University_Menu
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleUserEmail,
                 "Email Address: ", "Sähköpostiosoite: ", "E-postadress: "));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleUserMailbox,
-                "E-mail Account Type: ", "Sähköpostitilin tyyppi: ", "Typ av e-postkonto: "));
+                "Email Account Type: ", "Sähköpostitilin tyyppi: ", "Typ av e-postkonto: "));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleUserMailboxCloud,
                 "Cloud (Online)", "Pilvi (online)", "Moln (online)"));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleUserMailboxLocal,
@@ -339,6 +339,8 @@ namespace University_Menu
 
             TranslationItems.Add(AddTranslation(Properties.Resources.UISupportPuBulletinInfo,
                 "Check the devices to order (desktop computers, laptops, phones) in Flamma: ", "Tarkista tilattavat laitteet (pöytäkoneet, kannettavat, puhelimet) Flammasta: ", "Kontrollera de enheter som kan beställas (bordsdatorer, bärbara datorer, telefoner) i Flamma: "));
+            TranslationItems.Add(AddTranslation(Properties.Resources.UISupportPuRedirectInfo,
+                "Follow the purchase instructions from Flamma: ", "Seuraa Flamman hankintaohjeita: ", "Följ inköpsanvisningarna från Flamma: "));
             TranslationItems.Add(AddTranslation(Properties.Resources.UISupportPuFlammaURL,
                 requestURLFlammaEN, requestURLFlammaFI, requestURLFlammaSV));
             TranslationItems.Add(AddTranslation(Properties.Resources.UISupportPuOrders,
