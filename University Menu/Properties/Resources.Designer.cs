@@ -460,6 +460,15 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ComputerInfoCertificate.
+        /// </summary>
+        internal static string ModuleCompCert {
+            get {
+                return ResourceManager.GetString("ModuleCompCert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ComputerInfoCPU.
         /// </summary>
         internal static string ModuleCompCPU {
@@ -600,6 +609,15 @@ namespace University_Menu.Properties {
         internal static string ModuleCompWarrantyUrl {
             get {
                 return ResourceManager.GetString("ModuleCompWarrantyUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ComputerInfoWifiMAC.
+        /// </summary>
+        internal static string ModuleCompWifiMAC {
+            get {
+                return ResourceManager.GetString("ModuleCompWifiMAC", resourceCulture);
             }
         }
         
@@ -2248,7 +2266,7 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F1 M 22.17,36.4216L 25.3369,36.4216L 25.3369,31.6711C 25.3369,24.6745 31.0087,19.0027 38.0053,19.0027C 45.0019,19.0027 50.6737,24.6745 50.6737,31.6711L 50.6737,36.4216L 53.841,36.4216L 53.8411,57.008L 22.17,57.008L 22.17,36.4216 Z M 45.9231,31.6711C 45.9231,27.2982 42.3782,23.7533 38.0053,23.7533C 33.6324,23.7533 30.0875,27.2982 30.0875,31.6711L 30.0875,36.4216L 45.923,36.4216L 45.9231,31.6711 Z.
+        ///   Looks up a localized string similar to M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z.
         /// </summary>
         internal static string VecktorLock {
             get {
@@ -2257,7 +2275,7 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F1 M 22.1698,36.4215L 25.3366,36.4215L 25.3367,31.6711C 25.3367,24.6745 31.0085,19.0027 38.0051,19.0027C 45.0017,19.0027 50.6735,24.6745 50.6735,31.6711L 45.9228,31.6711C 45.9228,27.2982 42.3779,23.7533 38.0051,23.7533C 33.6322,23.7533 30.0873,27.2982 30.0873,31.6711L 30.0873,36.4216L 53.8408,36.4215L 53.8409,57.008L 22.1698,57.008L 22.1698,36.4215 Z.
+        ///   Looks up a localized string similar to M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10A2,2 0 0,1 6,8H15V6A3,3 0 0,0 12,3A3,3 0 0,0 9,6H7A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,17A2,2 0 0,0 14,15A2,2 0 0,0 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17Z.
         /// </summary>
         internal static string VecktorLockOpen {
             get {
@@ -2266,7 +2284,7 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F1 M 27,20L 38.75,20L 37.75,19L 24,19L 24,50L 27,50L 27,20 Z M 46.25,20L 59,32.75L 59,59L 27,59L 27,54L 20,54L 20,15L 39.25,15L 44.25,20L 46.25,20 Z M 31,24L 31,55L 55,55L 55,37L 42,37L 42,24L 31,24 Z M 46,25.25L 46,33L 53.75,33L 46,25.25 Z.
+        ///   Looks up a localized string similar to M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z.
         /// </summary>
         internal static string VectorCopy {
             get {
@@ -2284,7 +2302,7 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F1 M 38,19C 48.4934,19 57,27.5066 57,38C 57,48.4934 48.4934,57 38,57C 27.5066,57 19,48.4934 19,38C 19,27.5066 27.5066,19 38,19 Z M 33.25,33.25L 33.25,36.4167L 36.4166,36.4167L 36.4166,47.5L 33.25,47.5L 33.25,50.6667L 44.3333,50.6667L 44.3333,47.5L 41.1666,47.5L 41.1666,36.4167L 41.1666,33.25L 33.25,33.25 Z M 38.7917,25.3333C 37.48,25.3333 36.4167,26.3967 36.4167,27.7083C 36.4167,29.02 37.48,30.0833 38.7917,30.0833C 40.1033,30.0833 41.1667,29.02 41.1667,27.7083C 41.1667,26.3967 40.1033,25.3333 38.7917,25.333 [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z.
         /// </summary>
         internal static string VectorInfo {
             get {

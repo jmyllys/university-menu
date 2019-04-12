@@ -27,37 +27,6 @@
     <item
 			Header="[ComputerInfo]">
     </item>
-    <item
-			Header="---">
-    </item>
-    <item
-			Header="HY Assistant"
-			Execute="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant.lnk"
-			ExecuteFI="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant FIN.lnk"
-			ExecuteSV="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant SWE.lnk">
-    </item>
-    <item
-			Header="HY Install Printers" HeaderFI="Asenna HY-tulostimia" HeaderSV="Installera HY skrivarna"
-			Icon="C:\Program Files (x86)\HY\University Menu\Img\Printer.ico"
-			Execute="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Install Printers.lnk">
-    </item>
-    <item
-			Header="---">
-    </item>
-    <item
-			Header="Software Portal" HeaderFI="Ohjelmistoportaali" HeaderSV="Programportalen"
-			Icon="C:\Program Files (x86)\HY\University Menu\Img\Altiris.ico"
-			Execute="C:\Windows\System32\rundll32.exe"
-			Parameters="C:\PROGRA~1\Altiris\ALTIRI~1\Agents\SOFTWA~2\SOFTWA~1.DLL,ShowSoftwarePortal">
-    </item>
-    <item
-			Header="---">
-    </item>
-    <item
-			Header="Local Files Folder" HeaderFI="Paikallinen tiedostokansio" HeaderSV="Lokala filer mappen"
-			Icon="C:\Program Files (x86)\HY\University Menu\Img\Folder.ico"
-			Execute="C:\HY-Data\%username%">
-    </item>
   </menu>
   <settings
 		AllowWelcome="true" AllowCheckup="true" AllowNetwork="false"
@@ -67,11 +36,6 @@
       MessageInfoEN="Computer Name: %hostname%
 Model: %model%
 Serial Number: %serialnumber%
-
-Address: %address% (%building%)
-Room: %room%
-Profit Center: %profitcenter%
-Warranty Expires: %warranty%
 
 User Name: %username%
 Logon Domain: %domain%
@@ -86,11 +50,6 @@ Windows Updates: %winupdatetime%"
 Malli: %model%
 Sarjanumero: %serialnumber%
 
-Osoite: %address% (%building%)
-Huone: %room%
-Tulosyksikkö: %profitcenter%
-Takuun päättymispäivä: %warranty%
-
 Käyttäjätunnus: %username%
 Toimialue: %domain%
 
@@ -103,11 +62,6 @@ Windows-päivitykset: %winupdatetime%"
 			MessageInfoSV="Datorns namn: %hostname%
 Modell: %model%
 Serienummer: %serialnumber%%
-
-Adress: %address% (%building%)
-Rum: %room%
-Resultatenhet: %profitcenter%
-Garantins utgångsdatum: %warranty%
 
 Användarnamn: %username%
 Domän: %domain%
@@ -125,20 +79,17 @@ Windows uppdateringar: %winupdatetime%">
       <category
 				Caption="Computers and devices" CaptionFI="Tietokoneet ja laitteet" CaptionSV="Datorer och tillbehör"
 				ExtraField1="Phone number" ExtraField1FI="Puhelinnumero" ExtraField1SV="Telefonnummer"
-				ExtraField2="Present" ExtraField2FI="Tavoitettavissa" ExtraField2SV="Anträffbar"
-        SupportGroup="SG-00000024" Category1="CAT-439" RequestType="REQT-1">
+				ExtraField2="Present" ExtraField2FI="Tavoitettavissa" ExtraField2SV="Anträffbar">
       </category>
       <category
-				Caption="[SoftwareInstallation]"
-        SupportGroup="SG-00000024" RequestType="REQT-1" Category1="CAT-439" Category2="CAT-327" Category3="CAT-1070">
+				Caption="[SoftwareInstallation]">
       </category>
       <category
 				Caption="Printing" CaptionFI="Tulostus" CaptionSV="Utskrifter"
 				ExtraField1="Serial number" ExtraField1FI="Sarjanumero" ExtraField1SV="Serienummer">
       </category>
       <category
-				Caption="[Purchases]"
-        SupportGroup="SG-00000011" RequestType="REQT-1" Category1="CAT-437">
+				Caption="[Purchases]">
       </category>
       <category
 				Caption="Saving and sharing" CaptionFI="Tallentaminen ja jakaminen" CaptionSV="Lagring och delning">

@@ -69,6 +69,13 @@
                         License
                     </Hyperlink>)
                     <LineBreak/>
+                    <Hyperlink NavigateUri="https://materialdesignicons.com/" RequestNavigate="Hyperlink_RequestNavigate">
+                        Material Desing Icons
+                    </Hyperlink>
+                    (<Hyperlink NavigateUri="https://dev.materialdesignicons.com/license" RequestNavigate="Hyperlink_RequestNavigate">
+                        License
+                    </Hyperlink>)
+                    <LineBreak/>
                     A logo for University of Helsinki © 
                     <Hyperlink NavigateUri="http://www.helsinki.fi/university" RequestNavigate="Hyperlink_RequestNavigate">
                         University of Helsinki

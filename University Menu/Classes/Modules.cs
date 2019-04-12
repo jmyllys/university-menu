@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.DirectoryServices;
-using System.DirectoryServices.AccountManagement;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,7 +32,7 @@ namespace University_Menu
                     search.PropertiesToLoad.Add("*");
                     user = search.FindOne();
 
-                    search.Filter = "(&(objectClass=*)";
+                    search.Filter = "maxPwdAge=*";
                     other = search.FindOne();
                 }
             }
@@ -76,18 +73,26 @@ namespace University_Menu
                 try { moduleUIMailbox = Convert.ToDouble(user.Properties["msExchRecipientTypeDetails"][0]); }
                 catch { }
 
-                try { moduleUILastPWSet = (DateTime)user.Properties["pwdlastset"][0]; }
+                try
+                {
+                    long value = (long)user?.Properties["pwdlastset"][0];
+                    moduleUILastPWSet = DateTime.FromFileTimeUtc(value);
+                }
                 catch { }
                 try
                 {
                     TimeSpan maxPwdAge = TimeSpan.MinValue;
                     if (other.Properties.Contains("maxpwdage")) { maxPwdAge = TimeSpan.FromTicks((long)other.Properties["maxpwdage"][0]).Duration(); }
 
-                    moduleUIPWExpires = moduleUIPWExpires.AddDays(maxPwdAge.Days);
+                    moduleUIPWExpires = moduleUILastPWSet.AddDays(maxPwdAge.Days);
                 }
                 catch { }
 
-                try { moduleUIAccountExpires = (DateTime)user.Properties["accountexpires"][0]; }
+                try
+                {
+                    long value = (long)user?.Properties["accountexpires"][0];
+                    moduleUIAccountExpires = DateTime.FromFileTimeUtc(value);
+                }
                 catch { }
 
                 try { moduleUIHomeDirectory = user?.Properties["homedirectory"][0].ToString() ?? moduleUIHomeDirectory; }
@@ -103,7 +108,7 @@ namespace University_Menu
                 }
                 catch { italic = true; }
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserFullName, moduleUIDisplayName, ref separatorCheck, updateOnly, fontItalic: italic,
-                    icon: MenuIcon("F1 M 38,19C 43.5417,19 45.9167,22.1667 45.1174,28.8134C 45.8315,29.2229 46.3125,29.9928 46.3125,30.875C 46.3125,31.9545 45.5923,32.8658 44.6061,33.1546C 44.1941,34.623 43.5543,35.9229 42.75,36.9628L 42.75,41.9583C 45.3889,42.4861 47.5,42.75 50.6667,44.3333C 53.8333,45.9167 54.8889,47.3681 57,49.4792L 57,57L 19,57L 19,49.4792C 21.1111,47.3681 22.1667,45.9167 25.3333,44.3333C 28.5,42.75 30.6111,42.4861 33.25,41.9583L 33.25,36.9628C 32.4457,35.9229 31.8059,34.623 31.3939,33.1546C 30.4077,32.8658 29.6875,31.9545 29.6875,30.875C 29.6875,29.9928 30.1685,29.2229 30.8826,28.8134C 30.0833,22.1667 32.4583,19 38,19 Z"));
+                    icon: MenuIcon("M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"));
 
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserName, var.Username, ref separatorCheck, updateOnly, fontItalic: false);
 
@@ -119,21 +124,21 @@ namespace University_Menu
                 if (!updateOnly) { AddModuleItem(ref ui, ref separatorCheck); }
 
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserPWChanged, moduleUILastPWSet.ToShortDateString(), ref separatorCheck, updateOnly, fontItalic: italic,
-                    icon: MenuIcon("F1 M 30.0833,20.5833C 36.2045,20.5833 41.1667,25.5455 41.1667,31.6667C 41.1667,32.9121 40.9612,34.1096 40.5824,35.2271L 41.2098,35.6999L 42.75,38.3958L 45.9562,37.294L 45.0696,43.0703L 50.0614,42.37L 49.8929,47.9923L 55.4166,45.125L 56.941,46.6616L 58.5833,54.7394L 51.9312,55.6743L 33.8897,42.0791C 32.7027,42.5131 31.4207,42.75 30.0833,42.75C 23.9622,42.75 19,37.7878 19,31.6667C 19,25.5455 23.9622,20.5833 30.0833,20.5833 Z M 26.9167,26.125C 25.605,26.125 24.5417,27.1883 24.5417,28.5C 24.5417,29.8117 25.605,30.875 26.9167,30.875C 28.2283,30.875 29.2917,29.8117 29.2917,28.5C 29.2917,27.1883 28.2283,26.125 26.9167,26.125 Z"));
+                    icon: MenuIcon("M22,18V22H18V19H15V16H12L9.74,13.74C9.19,13.91 8.61,14 8,14A6,6 0 0,1 2,8A6,6 0 0,1 8,2A6,6 0 0,1 14,8C14,8.61 13.91,9.19 13.74,9.74L22,18M7,5A2,2 0 0,0 5,7A2,2 0 0,0 7,9A2,2 0 0,0 9,7A2,2 0 0,0 7,5Z"));
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserPWExpires, moduleUIPWExpires, ref separatorCheck, updateOnly, moduleNotifyDateUser, ref moduleUIValue, fontItalic: italic);
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserAccountExpires, moduleUIAccountExpires, ref separatorCheck, updateOnly, moduleNotifyDateUser, ref moduleUIValue, fontItalic: italic);
 
                 if (!updateOnly) { AddModuleItem(ref ui, ref separatorCheck); }
 
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserHomeDir, moduleUIHomeDirectory, ref separatorCheck, updateOnly, fontItalic: italic,
-                    icon: MenuIcon("F1 M 40,44L 39.9999,51L 44,51C 45.1046,51 46,51.8954 46,53L 46,57C 46,58.1046 45.1045,59 44,59L 32,59C 30.8954,59 30,58.1046 30,57L 30,53C 30,51.8954 30.8954,51 32,51L 36,51L 36,44L 40,44 Z M 47,53L 57,53L 57,57L 47,57L 47,53 Z M 29,53L 29,57L 19,57L 19,53L 29,53 Z M 19,22L 57,22L 57,31L 19,31L 19,22 Z M 55,24L 53,24L 53,29L 55,29L 55,24 Z M 51,24L 49,24L 49,29L 51,29L 51,24 Z M 47,24L 45,24L 45,29L 47,29L 47,24 Z M 21,27L 21,29L 23,29L 23,27L 21,27 Z M 19,33L 57,33L 57,42L 19,42L 19,33 Z M 55,35L 53,35L 53,40L 55,40L 55,35 Z M 51,35L 49,35L 49,40L 51,40L 51,35 Z M 47,35L 45,35L 45,40L 47,40L 47,35 Z M 21,38L 21,40L 23,40L 23,38L 21,38 Z"));
+                    icon: MenuIcon("M15,20A1,1 0 0,0 14,19H13V17H19A2,2 0 0,0 21,15V7A2,2 0 0,0 19,5H13L11,3H5A2,2 0 0,0 3,5V15A2,2 0 0,0 5,17H11V19H10A1,1 0 0,0 9,20H2V22H9A1,1 0 0,0 10,23H14A1,1 0 0,0 15,22H22V20H15M5,15V5H10.17L11.59,6.41L12.17,7H13L19,7V15H5Z"));
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserHomeDrive, moduleUIHomeDrive, ref separatorCheck, updateOnly, fontItalic: italic);
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserDiskSpace, var.HomeDriveTotalSize, ref separatorCheck, updateOnly, ref moduleUIValue, fontItalic: false);
 
                 if (!updateOnly) { AddModuleItem(ref ui, ref separatorCheck); }
 
                 AddModuleItem(ref ui, Properties.Resources.ModuleUserPrinter, var.DefaultPrinter, ref separatorCheck, updateOnly, fontItalic: false,
-                    icon: MenuIcon("F1 M 25,27L 25,17L 51,17L 51,27L 47,27L 47,21L 29,21L 29,27L 25,27 Z M 16,28L 60,28L 60,51L 52,51L 52,46L 55,46L 55,33L 21,33L 21,46L 24,46L 24,51L 16,51L 16,28 Z M 25,39L 28,39L 28,50L 35,50L 35,57L 48,57L 48,39L 51,39L 51,60L 33,60L 25,52L 25,39 Z"));
+                    icon: MenuIcon("M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z"));
 
                 if (!updateOnly) { AddModuleItem(ref ui, ref separatorCheck); }
 
@@ -235,6 +240,8 @@ namespace University_Menu
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompSN, var.SerialNumber, ref separatorCheck, updateOnly, true);
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompCPU, var.Processor, ref separatorCheck, updateOnly, true);
                 AddModuleItem(ref ci, Properties.Resources.ModuleCompMemory, var.Memory, ref separatorCheck, updateOnly, ref moduleCIvalue, true);
+                AddModuleItem(ref ci, Properties.Resources.ModuleCompWifiMAC, var.MACAddressWireless, ref separatorCheck, updateOnly, false,
+                    MenuIcon("M12,21L15.6,16.2C14.6,15.45 13.35,15 12,15C10.65,15 9.4,15.45 8.4,16.2L12,21M12,3C7.95,3 4.21,4.34 1.2,6.6L3,9C5.5,7.12 8.62,6 12,6C15.38,6 18.5,7.12 21,9L22.8,6.6C19.79,4.34 16.05,3 12,3M12,9C9.3,9 6.81,9.89 4.8,11.4L6.6,13.8C8.1,12.67 9.97,12 12,12C14.03,12 15.9,12.67 17.4,13.8L19.2,11.4C17.19,9.89 14.7,9 12,9Z"));
 
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
 
@@ -273,7 +280,9 @@ namespace University_Menu
                 { AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, Convert.ToDateTime(outputWinUpd), ref separatorCheck, updateOnly, checkupMinDays, ref moduleCIvalue, reverseNotify:true); }
                 else
                 { AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, var.WinUpdateTime, ref separatorCheck, updateOnly, true); }
-                
+
+                AddModuleItem(ref ci, Properties.Resources.ModuleCompCert, var.CompCertValid, ref separatorCheck, updateOnly, moduleNotifyDateComp, ref moduleCIvalue, reverseNotify: false);
+
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
 
                 foreach (var disk in GetCryptedDisks())

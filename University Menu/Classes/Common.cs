@@ -2,7 +2,6 @@
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
-using System.DirectoryServices.AccountManagement;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -21,6 +20,8 @@ using static System.Environment;
 using System.Windows;
 using FirstFloor.ModernUI.Presentation;
 using System.DirectoryServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
 
 namespace University_Menu
 {
@@ -598,6 +599,9 @@ namespace University_Menu
             if (exit) { return text; } else { VariableConvert(ref text, "%diskcryptstatus%", variable.DiskCryptStatus, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%ipaddress%", variable.IPAddress, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%macaddress%", variable.MACAddress, ref exit); }
+            if (exit) { return text; } else { VariableConvert(ref text, "%ethernetmacaddress%", variable.MACAddressEthernet, ref exit); }
+            if (exit) { return text; } else { VariableConvert(ref text, "%wirelessmacaddress%", variable.MACAddressWireless, ref exit); }
+            if (exit) { return text; } else { VariableConvert(ref text, "%compcertificate%", variable.CompCertValid.ToShortDateString(), ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%domain%", variable.Domain, ref exit); }
 
             return text;
@@ -671,6 +675,47 @@ namespace University_Menu
 
                         foreach (NetworkInterface nic in nics)
                         { if (!IsNullOrWhiteSpace(nic.GetPhysicalAddress().ToString())) { AddText(ref input, nic.GetPhysicalAddress().ToString()); } }
+
+                        return (!IsNullOrWhiteSpace(input.ToString()) ? input.ToString().Trim() : Properties.Resources.NA);
+                    }
+                    catch { return Properties.Resources.NA; }
+                }
+            }
+            public string MACAddressWireless
+            {
+                get
+                {
+                    try
+                    {
+                        StringBuilder input = new StringBuilder();
+                        NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+
+                        foreach (NetworkInterface nic in nics)
+                        {
+                            if (nic.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 && !IsNullOrWhiteSpace(nic.GetPhysicalAddress().ToString()) &&
+                                !nic.Description.Contains("Direct Virtual Adapter"))
+                            { AddText(ref input, nic.GetPhysicalAddress().ToString()); }
+                        }
+
+                        return (!IsNullOrWhiteSpace(input.ToString()) ? input.ToString().Trim() : Properties.Resources.NA);
+                    }
+                    catch { return Properties.Resources.NA; }
+                }
+            }
+            public string MACAddressEthernet
+            {
+                get
+                {
+                    try
+                    {
+                        StringBuilder input = new StringBuilder();
+                        NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+
+                        foreach (NetworkInterface nic in nics)
+                        {
+                            if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet && !IsNullOrWhiteSpace(nic.GetPhysicalAddress().ToString()))
+                            { AddText(ref input, nic.GetPhysicalAddress().ToString()); }
+                        }
 
                         return (!IsNullOrWhiteSpace(input.ToString()) ? input.ToString().Trim() : Properties.Resources.NA);
                     }
@@ -766,6 +811,30 @@ namespace University_Menu
                         return (!IsNullOrWhiteSpace(input.ToString()) ? input.ToString().Trim() : Properties.Resources.NA);
                     }
                     catch { return Properties.Resources.NA; }
+                }
+            }
+
+            public DateTime CompCertValid
+            {
+                get
+                {
+                    try
+                    {
+                        X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+                        List<DateTime> certs = new List<DateTime>();
+
+                        store.Open(OpenFlags.ReadOnly);
+
+                        foreach (X509Certificate2 certificate in store.Certificates)
+                        {
+                            if (certificate.Subject.Contains(MachineName)) { certs.Add(Convert.ToDateTime(certificate.NotAfter)); }
+                        }
+
+                        certs.Sort((a, b) => b.CompareTo(a));
+                        return certs.FirstOrDefault();
+
+                    }
+                    catch { return DateTime.MinValue; }
                 }
             }
         }

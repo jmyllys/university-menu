@@ -11,7 +11,7 @@ using System.Windows.Media;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("University of Helsinki")]
 [assembly: AssemblyProduct("University Menu (for Windows)")]
-[assembly: AssemblyCopyright("Copyright © 2014-2018 Juha Myllys")]
+[assembly: AssemblyCopyright("Copyright © 2014-2019 Juha Myllys")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -37,5 +37,5 @@ using System.Windows.Media;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.2.2.1810")]
-[assembly: AssemblyFileVersion("3.2.2.1810")]
+[assembly: AssemblyVersion("3.3.0.1903")]
+[assembly: AssemblyFileVersion("3.3.0.1903")]

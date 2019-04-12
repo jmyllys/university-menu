@@ -127,6 +127,8 @@ namespace University_Menu
                 "Processor: ", "Suoritin: ", "Processor: "));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompMemory,
                 "Memory: ; MB; GB; TB", "Muisti: ; Mt; Gt; Tt", "Minne: ; MB; GB; TB"));
+            TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompWifiMAC,
+                "Wireless MAC address: ", "Langaton MAC-osoite: ", "Trådlös MAC-adress: "));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompOS,
                 "Operating System: ", "Käyttöjärjestelmä: ", "Operativ system: "));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompVersion,
@@ -149,6 +151,8 @@ namespace University_Menu
                 "Drive ; is encrypted", "Asema ; on kryptattu", "Hårdskiva ; är krypterad"));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompNotEncrypt,
                 "Drive ; has not been encrypted", "Asema ; ei ole kryptattu", "Hårdskiva ; har inte krypterad"));
+            TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompCert,
+                "Certificate Expires: ", "Sertifikaatti vanhenee: ", "Certifikat utgångsdatum: "));
 
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleOWA,
                 "Outlook Web App (OWA)", "Outlook Web App (OWA)", "Outlook Web App (OWA)"));

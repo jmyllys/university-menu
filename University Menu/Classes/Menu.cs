@@ -47,6 +47,17 @@ namespace University_Menu
             PopupItemObjects.Clear();
             int i = 10;
 
+            // Title
+            MenuItem title = new MenuItem
+            {
+                Header = GetTranslation(Properties.Resources.UMIconText),
+                Name = Properties.Resources.UMIconText,
+                Tag = SortClass.abc.ToString() + i,
+                StaysOpenOnClick = true,
+                FontWeight = FontWeights.Bold,
+                FontSize = 14
+            };
+
             // Hostname
             MenuItem hostname = new MenuItem
             {
@@ -140,6 +151,7 @@ namespace University_Menu
             lang.Items.Add(appearance);
 
             // Add items to list
+            DefaultMenuItemList.Add(title);
             DefaultMenuItemList.Add(hostname);
             DefaultMenuItemList.Add(checkup);
             DefaultMenuItemList.Add(network);
