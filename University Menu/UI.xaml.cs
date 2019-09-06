@@ -71,6 +71,15 @@ namespace University_Menu
                     Source = new Uri("/Pages/WarrantyTab.xaml", UriKind.Relative)
                 });
             }
+            if ((MainWindow.osupgradeIconState.GetHashCode() > 0 && MainWindow.allowOSUpgrade) || source == MainWindow.Popup.OSUpgrade)
+            {
+                notify.Links.Add(new Link
+                {
+                    DisplayName = MainWindow.GetTranslation(Properties.Resources.DefaultOSUpgrade),
+                    Source = new Uri("/Pages/OSUpgradeTab.xaml", UriKind.Relative)
+                });
+            }
+
             if (count == 0 || notify.Links.Count == 0)
             {
                 notify.Links.Add(new Link
@@ -124,16 +133,27 @@ namespace University_Menu
                 case MainWindow.Popup.Settings:
                     ContentSource = new Uri("/Pages/SettingsPage.xaml", UriKind.Relative);
                     break;
+                case MainWindow.Popup.OSUpgrade:
+                    ContentSource = new Uri("/Pages/OSUpgradeTab.xaml", UriKind.Relative);
+                    break;
                 default:
                     break;
             }
 
-            LinkCollection titles = new LinkCollection();
-            titles.Add(new Link { DisplayName = MainWindow.GetTranslation(Properties.Resources.UISettings),
-                Source = new Uri("/Pages/SettingsPage.xaml", UriKind.Relative) });
+            LinkCollection titles = new LinkCollection
+            {
+                new Link
+                {
+                    DisplayName = MainWindow.GetTranslation(Properties.Resources.UISettings),
+                    Source = new Uri("/Pages/SettingsPage.xaml", UriKind.Relative)
+                },
 
-            titles.Add(new Link { DisplayName = MainWindow.GetTranslation(Properties.Resources.UIHelp),
-                Source = new Uri(MainWindow.GetTranslation(Properties.Resources.UIHelpUrl), UriKind.Absolute) });
+                new Link
+                {
+                    DisplayName = MainWindow.GetTranslation(Properties.Resources.UIHelp),
+                    Source = new Uri(MainWindow.GetTranslation(Properties.Resources.UIHelpUrl), UriKind.Absolute)
+                }
+            };
 
             TitleLinks.Clear();
             foreach (var title in titles) { TitleLinks.Add(title); }

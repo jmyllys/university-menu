@@ -19,7 +19,7 @@ namespace University_Menu.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -165,6 +165,15 @@ namespace University_Menu.Properties {
         internal static string DefaultNetwork {
             get {
                 return ResourceManager.GetString("DefaultNetwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DefaultOSUpgrade.
+        /// </summary>
+        internal static string DefaultOSUpgrade {
+            get {
+                return ResourceManager.GetString("DefaultOSUpgrade", resourceCulture);
             }
         }
         
@@ -1258,6 +1267,24 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UIOSUpgradeURL.
+        /// </summary>
+        internal static string UIOSUpgradeURL {
+            get {
+                return ResourceManager.GetString("UIOSUpgradeURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UIOSUpgradeURL2.
+        /// </summary>
+        internal static string UIOSUpgradeURL2 {
+            get {
+                return ResourceManager.GetString("UIOSUpgradeURL2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UIPreviewAttachmentError.
         /// </summary>
         internal static string UIPreviewAttachmentError {
@@ -2163,6 +2190,24 @@ namespace University_Menu.Properties {
         internal static string UserNetworkPopup {
             get {
                 return ResourceManager.GetString("UserNetworkPopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OSUpgradeExclude.
+        /// </summary>
+        internal static string UserOSUpgradeExclude {
+            get {
+                return ResourceManager.GetString("UserOSUpgradeExclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LastOSUpgradePopup.
+        /// </summary>
+        internal static string UserOSUpgradePopup {
+            get {
+                return ResourceManager.GetString("UserOSUpgradePopup", resourceCulture);
             }
         }
         

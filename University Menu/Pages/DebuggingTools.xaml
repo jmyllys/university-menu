@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+             d:DesignHeight="320" d:DesignWidth="500" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
@@ -42,6 +42,9 @@
                     <Button Name="DTPopupWarranty" Click="DTPopupWarranty_Click">Warranty Expired</Button>
                     <TextBlock Text="Date: " Margin="10,0,0,0" VerticalAlignment="Center"/>
                     <TextBox Name="DTPopupStatus" Width="50" Text="" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Button Name="DTPopupOSUpgrade" Click="DTPopupOSUpgrade_Click">OS Upgrade</Button>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

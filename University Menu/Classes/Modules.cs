@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Management;
+using System.Windows.Media;
 using static System.String;
 using static System.Environment;
 
@@ -67,10 +68,12 @@ namespace University_Menu
                 Variable var = new Variable();
                 bool separatorCheck = false, italic = false;
 
-                moduleUIDisplayName = user?.Properties["displayname"][0].ToString() ?? moduleUIDisplayName;
-
-                moduleUIEmail = user?.Properties["mail"][0].ToString() ?? moduleUIEmail;
-                try { moduleUIMailbox = Convert.ToDouble(user.Properties["msExchRecipientTypeDetails"][0]); }
+                try
+                {
+                    moduleUIDisplayName = user?.Properties["displayname"][0].ToString() ?? moduleUIDisplayName;
+                    moduleUIEmail = user?.Properties["mail"][0].ToString() ?? moduleUIEmail;
+                    moduleUIMailbox = Convert.ToDouble(user.Properties["msExchRecipientTypeDetails"][0]);
+                }
                 catch { }
 
                 try
@@ -256,6 +259,22 @@ namespace University_Menu
                 else
                 { AddModuleItem(ref ci, Properties.Resources.ModuleCompWarranty, var.Warranty, ref separatorCheck, updateOnly, true); }
 
+                switch (warrantyIconState)
+                {
+                    case IconType.Yellow:
+                        Application.Current.Dispatcher.Invoke(delegate { TBHostname.Foreground = Brushes.DarkOrange; });
+                        break;
+                    case IconType.Red:
+                        Application.Current.Dispatcher.Invoke(delegate { TBHostname.Foreground = Brushes.Red; });
+                        break;
+                    default:
+                        if (var.Warranty != Properties.Resources.NA)
+                        { Application.Current.Dispatcher.Invoke(delegate { TBHostname.Foreground = Brushes.Green; }); }
+                        else
+                        { Application.Current.Dispatcher.Invoke(delegate { TBHostname.Foreground = defaultFore; }); }
+                        break;
+                }
+
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
 
                 string icon = "F1 M 17,23L 34,20.7738L 34,37L 17,37L 17,23 Z M 34,55.2262L 17,53L 17,39L 34,39L 34,55.2262 Z M 59,17.5L 59,37L 36,37L 36,20.5119L 59,17.5 Z M 59,58.5L 36,55.4881L 36,39L 59,39L 59,58.5 Z";
@@ -281,7 +300,7 @@ namespace University_Menu
                 else
                 { AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, var.WinUpdateTime, ref separatorCheck, updateOnly, true); }
 
-                AddModuleItem(ref ci, Properties.Resources.ModuleCompCert, var.CompCertValid, ref separatorCheck, updateOnly, moduleNotifyDateComp, ref moduleCIvalue, reverseNotify: false);
+                AddModuleItem(ref ci, Properties.Resources.ModuleCompCert, var.CompCertValid.ToString(), ref separatorCheck, updateOnly, true);
 
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
 
@@ -628,8 +647,7 @@ namespace University_Menu
             bool visible = (!enabled && !showNA ? false : true);
 
             string[] input = GetTranslation(name).Split(';');
-            string headerText = Empty;
-
+            string headerText;
             if (input.Length > 1) { headerText = input[0] + header + input[1]; }
             else { headerText = input[0] + header; }
 
@@ -665,10 +683,10 @@ namespace University_Menu
             if (name == Properties.Resources.ModuleUserDiskSpace && header >= 0)
             {
                 Variable var = new Variable();
-                double free = var.HomeDriveFreeSpace, total = var.HomeDriveTotalSize, percent = 0;
+                double free = var.HomeDriveFreeSpace, total = var.HomeDriveTotalSize;
 
                 headerText = headerText + " (" + DiskSpaceUnit(GetTranslation(Properties.Resources.ModuleUserDiskSpaceFree), var.HomeDriveFreeSpace, true) + ")";
-                percent = (free / total) * 100;
+                double percent = (free / total) * 100;
 
                 if (percent > 5)
                 {
@@ -697,15 +715,13 @@ namespace University_Menu
 
         private static void AddModuleItem(ref MenuItem mi, string name, DateTime header, ref bool check, bool update, int notifyDate, ref IconType iconType, bool showNA = false, Path icon = null, bool fontItalic = false, bool reverseNotify = false)
         {
-            System.Windows.Media.Brush fore = null, back = null;
-
-            bool enabled = (header == defaultDate ? false : true);
+            bool enabled = header == defaultDate ? false : true;
             bool visible = (!enabled && !showNA ? false : true);
-            bool clearValue = false;
-
-            string headerText = (!enabled ? Properties.Resources.NA : GetTranslation(name) + header.ToShortDateString());
+            string headerText = !enabled ? Properties.Resources.NA : GetTranslation(name) + header.ToShortDateString();
             string tooltipAdd = Empty;
-
+            bool clearValue;
+            System.Windows.Media.Brush fore;
+            System.Windows.Media.Brush back;
             if (!reverseNotify)
             {
                 if (header < DateTime.Today && enabled)
@@ -774,7 +790,7 @@ namespace University_Menu
                     back = System.Windows.Media.Brushes.Red;
                     clearValue = (darkTheme ? true : false);
 
-                    tooltipAdd = GetTranslation(Properties.Resources.ModuleCompWarrantyTooltipMore) + "\n" + 
+                    tooltipAdd = GetTranslation(Properties.Resources.ModuleCompWarrantyTooltipMore) + "\n" +
                         GetTranslation(Properties.Resources.ModuleUserInstructionsTooltip);
                     if (iconType.GetHashCode() < 3) { iconType = IconType.Red; }
                 }
@@ -784,7 +800,7 @@ namespace University_Menu
                     back = (darkTheme ? System.Windows.Media.Brushes.DarkOrange : System.Windows.Media.Brushes.Orange);
                     clearValue = (darkTheme ? false : true);
 
-                    tooltipAdd = GetTranslation(Properties.Resources.ModuleCompWarrantyTooltipLess) + "\n" + 
+                    tooltipAdd = GetTranslation(Properties.Resources.ModuleCompWarrantyTooltipLess) + "\n" +
                         GetTranslation(Properties.Resources.ModuleUserInstructionsTooltip);
                     if (iconType.GetHashCode() < 2) { iconType = IconType.Yellow; }
                 }

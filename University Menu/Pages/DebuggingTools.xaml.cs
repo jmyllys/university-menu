@@ -62,5 +62,11 @@ namespace University_Menu.Pages
             if (!string.IsNullOrWhiteSpace(DTPopupStatus.Text)) { MainWindow.CheckWarrantyExpired(Convert.ToDateTime(DTPopupStatus.Text)); }
             else { MainWindow.CheckWarrantyExpired(MainWindow.defaultDate); }
         }
+
+        private void DTPopupOSUpgrade_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.CheckOSUpgrade(true, activate:true);
+            MainWindow.ShowNotification(true, MainWindow.Popup.OSUpgrade, true);
+        }
     }
 }

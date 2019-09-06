@@ -31,6 +31,8 @@ namespace University_Menu
                 "The settings of roaming profile will change!", "Liikkuvan profiilin asetuksia muutetaan!", "Inställningarna för roamingprofil ändras!"));
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultWarranty,
                 "Your computer warranty has expired!", "Tietokoneen takuu on päättynyt!", "Din datorgaranti har löpt ut!"));
+            TranslationItems.Add(AddTranslation(Properties.Resources.DefaultOSUpgrade,
+                "Computer is running Windows 7 operating system!", "Computer is running Windows 7 operating system!", "Computer is running Windows 7 operating system!"));
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultLang,
                  "Settings", "Asetukset", "Inställningar"));
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultDemo,
@@ -248,6 +250,11 @@ namespace University_Menu
                 "xx MB (yy %) of the zz disk quota in your home directory is free", "xx Mt (yy %) kotihakemistosi zz levytilasta on vapaana", "xx MB (yy %) av skivutrymmet i din hemkatalog är zz ledigt"));
             TranslationItems.Add(AddTranslation(Properties.Resources.UINetworkDiskSpaceInfoNA,
                 "Quota information of the home drive is not available", "Kotilevytilatietoja ei ole saatavilla", "Uppgifterna om hemkatalogen är inte tillgängliga"));
+
+            TranslationItems.Add(AddTranslation(Properties.Resources.UIOSUpgradeURL,
+                notifyURLOSUpgradeEN, notifyURLOSUpgradeFI, notifyURLOSUpgradeSV));
+            TranslationItems.Add(AddTranslation(Properties.Resources.UIOSUpgradeURL2,
+                notifyURLOSUpgrade2EN, notifyURLOSUpgrade2FI, notifyURLOSUpgrade2SV));
 
             TranslationItems.Add(AddTranslation(Properties.Resources.UISupportMessageTitle,
                 "Submit Support Request", "Lähetä tukipyyntö", "Skicka supportbegäran"));

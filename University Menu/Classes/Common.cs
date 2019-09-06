@@ -57,7 +57,7 @@ namespace University_Menu
                 if (retry > 5) { return; }
 
                 retry++;
-                wait = wait + 100;
+                wait += 100;
                 goto Retry;
             }
 
@@ -104,6 +104,8 @@ namespace University_Menu
             AppendAttribute(ref settings, Properties.Resources.UserRoamingExclude, roamingExclude.GetHashCode().ToString());
             AppendAttribute(ref settings, Properties.Resources.UserWarrantyPopup, Format("{0:g}", lastWarrantyPopup));
             AppendAttribute(ref settings, Properties.Resources.UserWarrantyExclude, warrantyExclude.GetHashCode().ToString());
+            AppendAttribute(ref settings, Properties.Resources.UserOSUpgradePopup, Format("{0:g}", lastOSUpgradePopup));
+            //AppendAttribute(ref settings, Properties.Resources.UserOSUpgradeExclude, osupgradeExclude.GetHashCode().ToString());
             AppendAttribute(ref settings, Properties.Resources.UserTheme, (AppearanceManager.Current.ThemeSource == AppearanceManager.DarkThemeSource ? "1" : "0"));
             AppendAttribute(ref settings, Properties.Resources.UserFont, themeFont.GetHashCode().ToString());
             AppendAttribute(ref settings, Properties.Resources.UserColor, themeColor.ToString());
@@ -175,6 +177,8 @@ namespace University_Menu
             roamingExclude = BoolValue(node.Attributes[Properties.Resources.UserRoamingExclude]?.InnerText ?? false.ToString());
             lastWarrantyPopup = GetSettingValue(node, Properties.Resources.UserWarrantyPopup, defaultDate);
             warrantyExclude = BoolValue(node.Attributes[Properties.Resources.UserWarrantyExclude]?.InnerText ?? false.ToString());
+            lastOSUpgradePopup = GetSettingValue(node, Properties.Resources.UserOSUpgradePopup, defaultDate);
+            //osupgradeExclude = BoolValue(node.Attributes[Properties.Resources.UserOSUpgradeExclude]?.InnerText ?? false.ToString());
 
             int themeCheck = GetSettingValue(node, Properties.Resources.UserTheme, 0);
             if (themeCheck == 1) { theme = AppearanceManager.DarkThemeSource; } else { theme = AppearanceManager.LightThemeSource; }
@@ -219,8 +223,6 @@ namespace University_Menu
 
         private static void GatherSettings(XmlNode nodes)
         {
-            string singleNode = Empty;
-
             forceLanguage = GetSettingValue(nodes, "ForceLanguage", -1);
             if (forceLanguage >= 0)
             {
@@ -252,6 +254,7 @@ namespace University_Menu
             allowReboot = BoolValue(nodes.Attributes["AllowRebootPending"]?.InnerText ?? false.ToString());
             allowRoaming = BoolValue(nodes.Attributes["AllowRoamingProfile"]?.InnerText ?? false.ToString());
             allowConnection = BoolValue(nodes.Attributes["AllowConnectionMonitor"]?.InnerText ?? false.ToString());
+            allowOSUpgrade = BoolValue(nodes.Attributes["AllowOSUpgrade"]?.InnerText ?? false.ToString());
 
             checkupIconState = IconType.Normal;
             networkIconState = IconType.Normal;
@@ -259,6 +262,7 @@ namespace University_Menu
             roamingIconState = IconType.Normal;
             moduleUserIconState = IconType.Normal;
             moduleCompIconState = IconType.Normal;
+            osupgradeIconState = IconType.Normal;
 
             iconStatus = 0;
             notifyStatus = new int[] { 0 };
@@ -274,8 +278,8 @@ namespace University_Menu
             uiHelpSV = nodes.Attributes["HelpUrlSV"]?.InnerText ?? "https://helpdesk.it.helsinki.fi/sv";
 
             // Support Request
-            singleNode = "//supportrequest";
-            Variable var = new Variable();
+            string singleNode = "//supportrequest";
+            _ = new Variable();
             requestCategories.Clear();
 
             requestToAddress = nodes.SelectSingleNode(singleNode)?.Attributes["ToAddress"]?.InnerText ?? "helpdesk@helsinki.fi";
@@ -375,6 +379,10 @@ namespace University_Menu
             notifyURLNetworkFI = nodes.SelectSingleNode(singleNode)?.Attributes["NetworkUrlFI"]?.InnerText ?? "https://helpdesk.it.helsinki.fi/help/3313";
             notifyURLNetworkSV = nodes.SelectSingleNode(singleNode)?.Attributes["NetworkUrlSV"]?.InnerText ?? "https://helpdesk.it.helsinki.fi/sv/help/3313";
 
+            //notifyURLOSUpgradeEN = nodes.SelectSingleNode(singleNode)?.Attributes["OSUpgradeUrlEN"]?.InnerText ?? Empty;
+            //notifyURLOSUpgradeFI = nodes.SelectSingleNode(singleNode)?.Attributes["OSUpgradeUrlFI"]?.InnerText ?? Empty;
+            //notifyURLOSUpgradeSV = nodes.SelectSingleNode(singleNode)?.Attributes["OSUpgradeUrlSV"]?.InnerText ?? Empty;
+
             rebootWait = GetSettingValue(nodes.SelectSingleNode(singleNode), "RebootWaitingTime", 7);
             rebootWaitWU = GetSettingValue(nodes.SelectSingleNode(singleNode), "RebootWaitingTimeWU", 4);
             rebootBalloonShowtime = GetSettingValue(nodes.SelectSingleNode(singleNode), "RebootBalloonShowtime", 7);
@@ -390,6 +398,8 @@ namespace University_Menu
 
             warrantyPopupFilePath = nodes.SelectSingleNode(singleNode)?.Attributes["WarrantyPopupFilePath"]?.InnerText ?? Empty;
             warrantyPopupFileParameters = nodes.SelectSingleNode(singleNode)?.Attributes["WarrantyPopupFileParameters"]?.InnerText ?? Empty;
+
+            osupgradePopupInterval = GetSettingValue(nodes.SelectSingleNode(singleNode), "OSUpgradePopupInterval", 3);
 
             notifyHelpdeskPhone = nodes.SelectSingleNode(singleNode)?.Attributes["HelpdeskPhone"]?.InnerText ?? "+358 2 941 55555";
             notifyHelpdeskEmail = nodes.SelectSingleNode(singleNode)?.Attributes["HelpdeskEmail"]?.InnerText ?? "helpdesk@helsinki.fi";
@@ -956,7 +966,7 @@ namespace University_Menu
 
                 while (inputValue >= 1024)
                 {
-                    inputValue = inputValue / 1024;
+                    inputValue /= 1024;
                     i++;
                     if (i == 3) { break; }
                 }

@@ -871,4 +871,19 @@
   <data name="ModuleCompCert" xml:space="preserve">
     <value>ComputerInfoCertificate</value>
   </data>
+  <data name="DefaultOSUpgrade" xml:space="preserve">
+    <value>DefaultOSUpgrade</value>
+  </data>
+  <data name="UserOSUpgradeExclude" xml:space="preserve">
+    <value>OSUpgradeExclude</value>
+  </data>
+  <data name="UIOSUpgradeURL" xml:space="preserve">
+    <value>UIOSUpgradeURL</value>
+  </data>
+  <data name="UIOSUpgradeURL2" xml:space="preserve">
+    <value>UIOSUpgradeURL2</value>
+  </data>
+  <data name="UserOSUpgradePopup" xml:space="preserve">
+    <value>LastOSUpgradePopup</value>
+  </data>
 </root>

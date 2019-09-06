@@ -126,6 +126,16 @@ namespace University_Menu
             };
             warranty.Click += Notification_Click;
 
+            MenuItem osupgrade = new MenuItem
+            {
+                Header = GetTranslation(Properties.Resources.DefaultOSUpgrade),
+                Name = Properties.Resources.DefaultOSUpgrade,
+                Tag = tag + i++,
+                Visibility = Visibility.Collapsed,
+                VerticalContentAlignment = VerticalAlignment.Center
+            };
+            osupgrade.Click += Notification_Click;
+
             // Settings
             MenuItem lang = new MenuItem
             {
@@ -158,6 +168,7 @@ namespace University_Menu
             DefaultMenuItemList.Add(reboot);
             DefaultMenuItemList.Add(roaming);
             DefaultMenuItemList.Add(warranty);
+            DefaultMenuItemList.Add(osupgrade);
             DefaultMenuItemList.Add(lang);
 
             PopupItemObjects.Add(new PopupItemObject { Tag = checkup.Tag.ToString(), Popup = Popup.Checkup });
@@ -166,6 +177,7 @@ namespace University_Menu
             PopupItemObjects.Add(new PopupItemObject { Tag = appearance.Tag.ToString(), Popup = Popup.Settings });
             PopupItemObjects.Add(new PopupItemObject { Tag = roaming.Tag.ToString(), Popup = Popup.RoamingProfile });
             PopupItemObjects.Add(new PopupItemObject { Tag = warranty.Tag.ToString(), Popup = Popup.WarrantyExpired });
+            PopupItemObjects.Add(new PopupItemObject { Tag = osupgrade.Tag.ToString(), Popup = Popup.OSUpgrade });
 
             LanguageMenuItemCheck(true);
         }
@@ -255,7 +267,7 @@ namespace University_Menu
                 {
                     try
                     {
-                        mi = (MenuItem)item;
+                        mi = item;
 
                         string value = GetTranslation(mi.Name);
                         if (value == Properties.Resources.NA || value == GetTranslation(Properties.Resources.NameErrorText)) { continue; }
@@ -752,7 +764,7 @@ namespace University_Menu
         public static List<MenuItem> MenuItemList = new List<MenuItem>();
         public static List<ListObject> MenuItemObjects = new List<ListObject>();
 
-        private static TextBox TBHostname = new TextBox
+        public static TextBox TBHostname = new TextBox
         {
             Text = Environment.MachineName.ToUpper(),
             FontWeight = FontWeights.Bold,

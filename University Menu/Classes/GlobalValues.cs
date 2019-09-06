@@ -52,6 +52,7 @@ namespace University_Menu
         public static IconType rebootIconState = IconType.Normal;
         public static IconType roamingIconState = IconType.Normal;
         public static IconType warrantyIconState = IconType.Normal;
+        public static IconType osupgradeIconState = IconType.Normal;
 
         public static int[] moduleStatus = new int[] { 0 };
         public static IconType moduleUserIconState = IconType.Normal;
@@ -71,6 +72,7 @@ namespace University_Menu
         public static bool allowRoaming = false;
         public static bool allowConnection = false;
         public static bool allowWarranty = false;
+        public static bool allowOSUpgrade = false;
 
         public static int startTimer = 4;
         public static int idleTimerMin = 225;
@@ -80,6 +82,8 @@ namespace University_Menu
         public static string uiHelpEN = "https://helpdesk.it.helsinki.fi/en";
         public static string uiHelpFI = "https://helpdesk.it.helsinki.fi";
         public static string uiHelpSV = "https://helpdesk.it.helsinki.fi/sv";
+
+        public static OSUpgradeGroups OSGroup = OSUpgradeGroups.None;
 
         // Chat
         public static int chatWindowWidth = 438;
@@ -109,6 +113,7 @@ namespace University_Menu
         public static string rebootPopupFileParameters = Empty;
         public static string warrantyPopupFilePath = Empty;
         public static string warrantyPopupFileParameters = Empty;
+        public static int osupgradePopupInterval = 3;
 
         public static int welcomeShowCount = 1;
         public static int balloonShowTime = 16000;
@@ -126,6 +131,12 @@ namespace University_Menu
         public static string notifyURLWarrantyEN = "https://helpdesk.it.helsinki.fi/en/help/3313";
         public static string notifyURLWarrantyFI = "https://helpdesk.it.helsinki.fi/help/3313";
         public static string notifyURLWarrantySV = "https://helpdesk.it.helsinki.fi/sv/help/3313";
+        public static string notifyURLOSUpgradeEN = "https://helpdesk.it.helsinki.fi/en/help/10857";
+        public static string notifyURLOSUpgradeFI = "https://helpdesk.it.helsinki.fi/help/10857";
+        public static string notifyURLOSUpgradeSV = "https://helpdesk.it.helsinki.fi/sv/help/10857";
+        public static string notifyURLOSUpgrade2EN = "https://flamma.helsinki.fi/en/group/it-ja-puhelin/how-to-purchase-a-computer";
+        public static string notifyURLOSUpgrade2FI = "https://flamma.helsinki.fi/fi/group/it-ja-puhelin/nain-hankit-tietokoneen";
+        public static string notifyURLOSUpgrade2SV = "https://flamma.helsinki.fi/sv/group/it-ja-puhelin/sa-har-skaffar-du-en-dator";
         public static string notifyLocalFolder = Empty;
 
         public static int roamingShowCount = 1;
@@ -229,6 +240,8 @@ namespace University_Menu
         public static bool roamingExclude = false;
         public static DateTime lastWarrantyPopup = DateTime.MinValue;
         public static bool warrantyExclude = false;
+        public static DateTime lastOSUpgradePopup = DateTime.MinValue;
+        //public static bool osupgradeExclude = false;
 
         public static string moduleUIDisplayName = Empty;
         public static string moduleUIEmail = Empty;

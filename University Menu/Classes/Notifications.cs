@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.DirectoryServices;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Windows.Controls.Primitives;
 using University_Menu.UserControls;
 using WUApiLib;
 using static System.String;
+using static System.Environment;
 
 namespace University_Menu
 {
@@ -20,6 +22,7 @@ namespace University_Menu
         {
             if (!timerFirstLoop)
             {
+                CheckOSUpgrade(showNotifications);
                 CheckRoamingProfile();
                 CheckRebootPending(showNotifications);
                 CheckCheckup(showNotifications);
@@ -266,6 +269,66 @@ namespace University_Menu
         }
         #endregion
 
+        #region OSUpgrade
+        public static void CheckOSUpgrade(bool showNotification, bool activate = false)
+        {
+            if (!allowOSUpgrade) { return; }
+            if (OSVersion.Version.Major >= 10) { return; } // Windows 10 or above
+
+            using (DirectoryEntry entry = new DirectoryEntry("LDAP://ad.helsinki.fi:636")
+            { AuthenticationType = AuthenticationTypes.Secure | AuthenticationTypes.SecureSocketsLayer | AuthenticationTypes.ServerBind })
+            using (DirectorySearcher search = new DirectorySearcher(entry)
+            { Filter = Format("(&(objectClass=computer)(CN={0}))", MachineName) })
+            {
+                SearchResult result = search.FindOne();
+
+                OSGroup = OSUpgradeGroups.None;
+
+                if (result != null)
+                {
+                    using (DirectoryEntry ws = result.GetDirectoryEntry())
+                    {
+                        PropertyValueCollection pvc = ws.Properties["memberOf"];
+
+                        foreach (string property in pvc)
+                        {
+                            if (property.Contains("CN=w10mig_inplaceupgrade,"))
+                            {
+                                OSGroup = OSUpgradeGroups.InPlace;
+                                break;
+                            }
+                            else if (property.Contains("CN=w10mig_poistuvat,"))
+                            {
+                                OSGroup = OSUpgradeGroups.Poistuvat;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (OSGroup != OSUpgradeGroups.None || activate)
+            {
+                DateTime red = new DateTime(2019, 9, 12);
+
+                if (DateTime.Now >= red)
+                {
+                    ChangeNotificationIcon(IconType.Red, Properties.Resources.DefaultOSUpgrade, ref osupgradeIconState);
+
+                    if (showNotification)
+                    {
+                        if ((DateTime.Now - lastOSUpgradePopup).TotalDays >= osupgradePopupInterval && (DateTime.Now - lastShown).TotalDays >= 1)
+                        { ShowNotification(true, Popup.OSUpgrade); }
+                    }
+                }
+                else
+                { ChangeNotificationIcon(IconType.Blue, Properties.Resources.DefaultOSUpgrade, ref osupgradeIconState); }
+            }
+            else
+            { ChangeNotificationIcon(IconType.Normal, Properties.Resources.DefaultOSUpgrade, ref osupgradeIconState); }
+        }
+        #endregion
+
         private static void CheckNotificationStatus(ref DateTime popup, ref DateTime balloon, int intervalBalloon, int intervalPopup, bool balloonStatus, Popup source)
         {
             if (popup <= defaultDate) { popup = DateTime.Now; }
@@ -368,7 +431,7 @@ namespace University_Menu
                 state = icon;
             }
 
-            notifyStatus = new int[] { checkupIconState.GetHashCode(), networkIconState.GetHashCode(), rebootIconState.GetHashCode(), roamingIconState.GetHashCode(), warrantyIconState.GetHashCode() };
+            notifyStatus = new int[] { checkupIconState.GetHashCode(), networkIconState.GetHashCode(), rebootIconState.GetHashCode(), roamingIconState.GetHashCode(), warrantyIconState.GetHashCode(), osupgradeIconState.GetHashCode() };
             moduleStatus = new int[] { moduleUserIconState.GetHashCode(), moduleCompIconState.GetHashCode() };
 
             int status = (notifyStatus.Max() > moduleStatus.Max() ? notifyStatus.Max() : moduleStatus.Max());
@@ -430,6 +493,9 @@ namespace University_Menu
                     case Popup.WarrantyExpired:
                         filePath = warrantyPopupFilePath;
                         fileParameters = warrantyPopupFileParameters;
+                        break;
+                    case Popup.OSUpgrade:
+                        lastOSUpgradePopup = DateTime.Now;
                         break;
                     default:
                         return;
@@ -512,7 +578,15 @@ namespace University_Menu
             Welcome,
             SupportRequest,
             Chat,
-            Settings
+            Settings,
+            OSUpgrade
+        }
+
+        public enum OSUpgradeGroups
+        {
+            None,
+            InPlace,
+            Poistuvat
         }
     }
 }
