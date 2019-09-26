@@ -659,12 +659,14 @@ namespace University_Menu
                 fore = themeFore;
                 back = (darkTheme ? System.Windows.Media.Brushes.Green : System.Windows.Media.Brushes.LawnGreen);
                 clearValue = true;
+                name += header.Substring(0, 1);
             }
             if (name == Properties.Resources.ModuleCompNotEncrypt)
             {
                 fore = (darkTheme ? themeFore : themeForeOpposite);
                 back = System.Windows.Media.Brushes.Red;
                 clearValue = (darkTheme ? true : false);
+                name += header.Substring(0, 1);
             }
 
             if (!IsNullOrWhiteSpace(header)) { HandleModuleItem(ref mi, name, headerText, ref check, enabled, visible, update, icon, fore, back, clearValue, fontItalic: fontItalic); }

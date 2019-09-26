@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local>
+  <menu>
+    <item
+			Header="Helpdesk in web" HeaderFI="Helpdesk-ohjesivusto" HeaderSV="Helpdesk på nätet"
+			Execute="https://helpdesk.it.helsinki.fi/en" ExecuteFI="https://helpdesk.it.helsinki.fi/" ExecuteSV="https://helpdesk.it.helsinki.fi/sv"
+			Icon="C:\Program Files (x86)\HY\University Menu\Img\HD.ico">
+    </item>
+    <item
+			Header="[SupportRequest]">
+    </item>
+    <item
+			Header="[Chat]">
+    </item>
+    <item
+			Header="---">
+    </item>
+    <item
+			Header="[OWA]">
+    </item>
+    <item
+			Header="---">
+    </item>
+    <item
+			Header="[UserInformation]">
+    </item>
+    <item
+			Header="[ComputerInfo]">
+    </item>
+    <item
+			Header="---">
+    </item>
+    <item
+			Header="HY Assistant"
+			Execute="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant.lnk"
+			ExecuteFI="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant FIN.lnk"
+			ExecuteSV="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant SWE.lnk">
+    </item>
+    <item
+			Header="HY Install Printers" HeaderFI="Asenna HY-tulostimia" HeaderSV="Installera HY skrivarna"
+			Icon="C:\Program Files (x86)\HY\University Menu\Img\Printer.ico"
+			Execute="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Install Printers.lnk">
+    </item>
+    <item
+			Header="---">
+    </item>
+    <item
+			Header="Software Portal" HeaderFI="Ohjelmistoportaali" HeaderSV="Programportalen"
+			Icon="C:\Program Files (x86)\HY\University Menu\Img\Altiris.ico"
+			Execute="C:\Windows\System32\rundll32.exe"
+			Parameters="C:\PROGRA~1\Altiris\ALTIRI~1\Agents\SOFTWA~2\SOFTWA~1.DLL,ShowSoftwarePortal">
+    </item>
+    <item
+			Header="---">
+    </item>
+    <item
+			Header="Local Files Folder" HeaderFI="Paikallinen tiedostokansio" HeaderSV="Lokala filer mappen"
+			Icon="C:\Program Files (x86)\HY\University Menu\Img\Folder.ico"
+			Execute="C:\HY-Data\%username%">
+    </item>
+  </menu>
+  <settings
+		TimerStart="1"
+    AllowWelcome="true" AllowCheckup="true" AllowNetwork="false"
+		AllowUserInfo="true" AllowComputerInfo="true" AllowRebootPending="true"
+		AllowOWA="true" AllowChat="false" AllowSupportRequest="true" AllowRoamingProfile="false"
+    AllowOSUpgrade="true">
+    <supportrequest
+      MessageInfoEN="Computer Name: %hostname%
+Model: %model%
+Serial Number: %serialnumber%
+
+Address: %address% (%building%)
+Room: %room%
+Profit Center: %profitcenter%
+Warranty Expires: %warranty%
+
+User Name: %username%
+Logon Domain: %domain%
+
+OS Version: %os% (%osversion%)
+CPU: %cpu%
+Memory: %memorygb% GB
+
+Boot Time: %sysboottime%
+Windows Updates: %winupdatetime%"
+			MessageInfoFI="Konenimi: %hostname%
+Malli: %model%
+Sarjanumero: %serialnumber%
+
+Osoite: %address% (%building%)
+Huone: %room%
+Tulosyksikkö: %profitcenter%
+Takuun päättymispäivä: %warranty%
+
+Käyttäjätunnus: %username%
+Toimialue: %domain%
+
+Käyttöjärjestelmä: %os% (%osversion%)
+Suoritin: %cpu%
+Muisti: %memorygb% Gt
+
+Käynnistysaika: %sysboottime%
+Windows-päivitykset: %winupdatetime%"
+			MessageInfoSV="Datorns namn: %hostname%
+Modell: %model%
+Serienummer: %serialnumber%%
+
+Adress: %address% (%building%)
+Rum: %room%
+Resultatenhet: %profitcenter%
+Garantins utgångsdatum: %warranty%
+
+Användarnamn: %username%
+Domän: %domain%
+
+Operativ system: %os% (%osversion%)
+Processor: %cpu%
+Minne: %memorygb% GB
+
+Bootatid: %sysboottime%
+Windows uppdateringar: %winupdatetime%">
+      <category
+				Caption="User accounts and logging in" CaptionFI="Käyttöluvat ja kirjautuminen" CaptionSV="Användningstillstånden och inloggning"
+				ExtraField1="Username" ExtraField1FI="Käyttäjätunnus" ExtraField1SV="Användarnamn">
+      </category>
+      <category
+				Caption="Computers and devices" CaptionFI="Tietokoneet ja laitteet" CaptionSV="Datorer och tillbehör"
+				ExtraField1="Phone number" ExtraField1FI="Puhelinnumero" ExtraField1SV="Telefonnummer"
+				ExtraField2="Present" ExtraField2FI="Tavoitettavissa" ExtraField2SV="Anträffbar"
+        SupportGroup="SG-00000024" Category1="CAT-439" RequestType="REQT-1">
+      </category>
+      <category
+				Caption="[SoftwareInstallation]"
+        SupportGroup="SG-00000024" RequestType="REQT-1" Category1="CAT-439" Category2="CAT-327" Category3="CAT-1070">
+      </category>
+      <category
+				Caption="Printing" CaptionFI="Tulostus" CaptionSV="Utskrifter"
+				ExtraField1="Serial number" ExtraField1FI="Sarjanumero" ExtraField1SV="Serienummer">
+      </category>
+      <category
+				Caption="[Purchases]"
+        SupportGroup="SG-00000011" RequestType="REQT-1" Category1="CAT-437">
+      </category>
+      <category
+				Caption="Saving and sharing" CaptionFI="Tallentaminen ja jakaminen" CaptionSV="Lagring och delning">
+      </category>
+      <category
+				Caption="Studying and teaching" CaptionFI="Opiskelu ja opetus" CaptionSV="Studier och undervisning">
+      </category>
+      <category
+				Caption="Technical background services" CaptionFI="Tekniset taustapalvelut" CaptionSV="Tekniska bakgrundstjänster">
+      </category>
+    </supportrequest>
+    <notifications
+			CheckupVPNPath="C:\Program Files (x86)\Common Files\Juniper Networks\JamUI\Pulse.exe" CheckupVPNParameters="-show"
+			RebootWaitingTime="14" RebootWaitingTimeWU="7" RebootBalloonShowtime="7" RebootPopupShowtime="-1"
+			WelcomeShowCount="3"
+			RoamingShowCount="1" RoamingStartDate="1.12.2016" RoamingEndDate="1.2.2017"
+			LocalFolder="C:\HY-Data\%username%">
+    </notifications>
+    <chat></chat>
+    <modules
+			UIShowNotification="true" CIShowNotification="true"
+			UINotifyWarningLimit="14" CINotifyWarningLimit="60"
+			UIHeader="Information is available in the HY Assistant application..." UIHeaderFI="Lisätietoja on saatavilla HY Assistant -sovelluksessa..." UIHeaderSV="Ytterligare information finns tillgänglig i applikationen HY Assistant..."
+			UIExecute="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant.lnk" UIExecuteFI="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant FIN.lnk" UIExecuteSV="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant SWE.lnk"
+			CIHeader="Information is available in the HY Assistant application..." CIHeaderFI="Lisätietoja on saatavilla HY Assistant -sovelluksessa..." CIHeaderSV="Ytterligare information finns tillgänglig i applikationen HY Assistant..."
+			CIExecute="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant.lnk" CIExecuteFI="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant FIN.lnk" CIExecuteSV="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\HY\HY Assistant SWE.lnk">
+    </modules>
+  </settings>
+</local>

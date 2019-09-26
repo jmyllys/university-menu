@@ -20,7 +20,7 @@
                             HUOMIO
                         </Paragraph>
                         <Paragraph Name="rtbSubTitle" FontSize="16" FontWeight="Bold" Margin="0,2,0,0">
-                            Tietokoneen käyttöjärjestelmä tulee päivittää
+                            Tämän tietokoneen käyttöjärjestelmä on Windows 7
                         </Paragraph>
                         <Paragraph/>
                         <Paragraph>
@@ -42,7 +42,8 @@
                         </Paragraph>
                         <Paragraph/>
                         <Paragraph>
-                            Tietokoneen käyttöjärjestelmä tulee päivittää uudempaan versioon.
+                            <TextBlock Name="tbOSUpgradeText" TextWrapping="Wrap">
+                            </TextBlock>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>

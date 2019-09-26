@@ -21,9 +21,9 @@ namespace University_Menu.Pages
             Uri page;
             switch (UI.usedLanguage)
             {
-                //case MainWindow.Languages.Suomi:
-                //    page = new Uri("/Pages/OSUpgrade/OSUpgradeFI.xaml", UriKind.Relative);
-                //    break;
+                case MainWindow.Languages.Suomi:
+                    page = new Uri("/Pages/OSUpgrade/OSUpgradeFI.xaml", UriKind.Relative);
+                    break;
                 //case MainWindow.Languages.Svenska:
                 //    page = new Uri("/Pages/OSUpgrade/OSUpgradeSV.xaml", UriKind.Relative);
                 //    break;

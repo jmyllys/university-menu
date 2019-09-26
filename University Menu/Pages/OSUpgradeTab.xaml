@@ -10,7 +10,7 @@
         <mui:ModernTab SelectedSource="/Pages/OSUpgrade/OSUpgradeEN.xaml" Layout="Tab" Name="startPage">
             <mui:ModernTab.Links>
                 <mui:Link DisplayName="In English" Source="/Pages/OSUpgrade/OSUpgradeEN.xaml" />
-                <!--<mui:Link DisplayName="Suomeksi" Source="/Pages/OSUpgrade/OSUpgradeFI.xaml" />-->
+                <mui:Link DisplayName="Suomeksi" Source="/Pages/OSUpgrade/OSUpgradeFI.xaml" />
                 <!--<mui:Link DisplayName="På svenska" Source="/Pages/OSUpgrade/OSUpgradeSV.xaml" />-->
             </mui:ModernTab.Links>
         </mui:ModernTab>

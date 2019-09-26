@@ -32,7 +32,7 @@ namespace University_Menu
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultWarranty,
                 "Your computer warranty has expired!", "Tietokoneen takuu on päättynyt!", "Din datorgaranti har löpt ut!"));
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultOSUpgrade,
-                "Computer is running Windows 7 operating system!", "Computer is running Windows 7 operating system!", "Computer is running Windows 7 operating system!"));
+                "Computer is running Windows 7 operating system!", "Tietokoneen käyttöjärjestelmä on Windows 7!", "Computer is running Windows 7 operating system!"));
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultLang,
                  "Settings", "Asetukset", "Inställningar"));
             TranslationItems.Add(AddTranslation(Properties.Resources.DefaultDemo,
