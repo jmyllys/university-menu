@@ -154,7 +154,9 @@ namespace University_Menu
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompNotEncrypt,
                 "Drive ; has not been encrypted", "Asema ; ei ole kryptattu", "Hårdskiva ; har inte krypterad"));
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompCert,
-                "Certificate Expires: ", "Sertifikaatti vanhenee: ", "Certifikat utgångsdatum: "));
+                "SCCM Certificate Expires: ", "SCCM-sertifikaatti vanhenee: ", "SCCM certifikat utgångsdatum: "));
+            TranslationItems.Add(AddTranslation(Properties.Resources.ModuleCompCertAoVPN,
+                "AoVPN Certificate Expires: ", "AoVPN-sertifikaatti vanhenee: ", "AoVPN certifikat utgångsdatum: "));
 
             TranslationItems.Add(AddTranslation(Properties.Resources.ModuleOWA,
                 "Outlook Web App (OWA)", "Outlook Web App (OWA)", "Outlook Web App (OWA)"));

@@ -478,6 +478,15 @@ namespace University_Menu.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ComputerInfoAoVPN.
+        /// </summary>
+        internal static string ModuleCompCertAoVPN {
+            get {
+                return ResourceManager.GetString("ModuleCompCertAoVPN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ComputerInfoCPU.
         /// </summary>
         internal static string ModuleCompCPU {

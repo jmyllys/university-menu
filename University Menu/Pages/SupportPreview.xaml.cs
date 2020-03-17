@@ -111,8 +111,11 @@ namespace University_Menu.Pages
                     Body = SupportRequest.request.MessageSent + signature + NewLine + Properties.Resources.EfecteDescEnd,
                 };
 
-                message.To.Add(SupportRequest.request.ToAddress);
+                //if (checkSendCopy.IsChecked == true)
+                //{ message.CC.Add(new MailAddress(MainWindow.sendSettings.Email, MainWindow.sendSettings.Name, Encoding.UTF8)); }
 
+                message.To.Add(SupportRequest.request.ToAddress);
+                
                 if (SupportRequest.request.Attachments.Count > 0)
                 {
                     bool errors = false;

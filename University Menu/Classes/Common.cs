@@ -612,6 +612,7 @@ namespace University_Menu
             if (exit) { return text; } else { VariableConvert(ref text, "%ethernetmacaddress%", variable.MACAddressEthernet, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%wirelessmacaddress%", variable.MACAddressWireless, ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%compcertificate%", variable.CompCertValid.ToShortDateString(), ref exit); }
+            if (exit) { return text; } else { VariableConvert(ref text, "%aovpncertificate%", variable.AoVPNCertValid.ToShortDateString(), ref exit); }
             if (exit) { return text; } else { VariableConvert(ref text, "%domain%", variable.Domain, ref exit); }
 
             return text;
@@ -837,7 +838,44 @@ namespace University_Menu
 
                         foreach (X509Certificate2 certificate in store.Certificates)
                         {
-                            if (certificate.Subject.Contains(MachineName)) { certs.Add(Convert.ToDateTime(certificate.NotAfter)); }
+                            foreach (X509Extension extension in certificate.Extensions)
+                            {
+                                if (extension.Oid.FriendlyName == "Certificate Template Information")
+                                {
+                                    if (extension.Format(true).Contains("Template=ConfigMgr Windows Client Certificate"))
+                                    { if (certificate.Subject.Contains(MachineName)) { certs.Add(Convert.ToDateTime(certificate.NotAfter)); } }
+                                }
+                            }
+                        }
+
+                        certs.Sort((a, b) => b.CompareTo(a));
+                        return certs.FirstOrDefault();
+
+                    }
+                    catch { return DateTime.MinValue; }
+                }
+            }
+            public DateTime AoVPNCertValid
+            {
+                get
+                {
+                    try
+                    {
+                        X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+                        List<DateTime> certs = new List<DateTime>();
+
+                        store.Open(OpenFlags.ReadOnly);
+
+                        foreach (X509Certificate2 certificate in store.Certificates)
+                        {
+                            foreach (X509Extension extension in certificate.Extensions)
+                            {
+                                if (extension.Oid.FriendlyName == "Certificate Template Information")
+                                {
+                                    if (extension.Format(true).Contains("Template=hyad-aovpn-comp"))
+                                    { if (certificate.Subject.Contains(MachineName)) { certs.Add(Convert.ToDateTime(certificate.NotAfter)); } }
+                                }
+                            }
                         }
 
                         certs.Sort((a, b) => b.CompareTo(a));

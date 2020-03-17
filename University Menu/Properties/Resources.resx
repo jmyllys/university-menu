@@ -886,4 +886,7 @@
   <data name="UserOSUpgradePopup" xml:space="preserve">
     <value>LastOSUpgradePopup</value>
   </data>
+  <data name="ModuleCompCertAoVPN" xml:space="preserve">
+    <value>ComputerInfoAoVPN</value>
+  </data>
 </root>

@@ -300,7 +300,8 @@ namespace University_Menu
                 else
                 { AddModuleItem(ref ci, Properties.Resources.ModuleCompWinUpd, var.WinUpdateTime, ref separatorCheck, updateOnly, true); }
 
-                AddModuleItem(ref ci, Properties.Resources.ModuleCompCert, var.CompCertValid.ToString(), ref separatorCheck, updateOnly, true);
+                AddModuleItem(ref ci, Properties.Resources.ModuleCompCert, var.CompCertValid, ref separatorCheck, updateOnly, 3, ref moduleCIvalue, true);
+                AddModuleItem(ref ci, Properties.Resources.ModuleCompCertAoVPN, var.AoVPNCertValid, ref separatorCheck, updateOnly, 3, ref moduleCIvalue, false);
 
                 if (!updateOnly) { AddModuleItem(ref ci, ref separatorCheck); }
 

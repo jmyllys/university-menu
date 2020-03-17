@@ -17,6 +17,12 @@
                 <TextBox x:Name="messageText" Margin="0,2,0,0" Width="520" Height="230" HorizontalAlignment="Left" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"></TextBox>
                 <TextBox x:Name="messageFooter" Margin="0,2,0,0" Width="520" Height="40" HorizontalAlignment="Left" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"></TextBox>
                 <TextBlock></TextBlock>
+                
+                <CheckBox Name="checkSendCopy" Visibility="Collapsed">
+                    <AccessText Text="Send me a copy of the message"
+                                TextWrapping="Wrap"/>
+                </CheckBox>
+                <TextBlock Visibility="Collapsed"></TextBlock>
 
                 <StackPanel Name="gridCanNotSend">
                     <Grid>

@@ -137,7 +137,7 @@ namespace University_Menu.Pages
 
                     SearchResult user = search.FindOne();
                     MainWindow.sendSettings.Name = user?.Properties["displayname"][0].ToString() ?? Empty;
-                    MainWindow.sendSettings.Name = user?.Properties["mail"][0].ToString() ?? Empty;
+                    MainWindow.sendSettings.Email = user?.Properties["mail"][0].ToString() ?? Empty;
                 }
             }
             catch
